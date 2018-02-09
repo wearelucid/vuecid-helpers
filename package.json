@@ -1,0 +1,17 @@
+{
+  "name": "vuecid-helpers",
+  "version": "1.0.0",
+  "description": "Vuecid Utility Library",
+  "main": "dist/index.js",
+  "repository": "https://github.com/wearelucid/vuecid-helpers.git",
+  "author": "Lucid <buero@wearelucid.ch> (https://www.wearelucid.ch)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0"
+  },
+  "scripts": {
+    "build": "babel src --presets=babel-preset-env --plugins=babel-plugin-transform-object-rest-spread --out-dir dist"
+  }
+}

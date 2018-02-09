@@ -1,0 +1,20 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getPathFromUrl;
+
+var _verifyLeadingSlash = require('./verifyLeadingSlash');
+
+var _verifyLeadingSlash2 = _interopRequireDefault(_verifyLeadingSlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getPathFromUrl(string) {
+  var regex = /(http[s]?:\/\/)?([^/\s]+\/)(.*)/;
+  var str = string;
+  var subst = '$3';
+  var result = str.replace(regex, subst);
+  return (0, _verifyLeadingSlash2.default)(result);
+}
