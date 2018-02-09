@@ -27,6 +27,13 @@ var _removeTrailingSlash2 = _interopRequireDefault(_removeTrailingSlash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Generate meta info.
+ *
+ * TODO: Add config argument? Might be good for things like the title pattern/separator `${title} — ${siteName}`
+ * TODO: Add more comments.
+ */
+
 function generateMetaInfo(options, post, locale, route) {
   var websiteUrl = options.global.website_url || 'website.url';
   var siteName = options.global.site_title || '';

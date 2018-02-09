@@ -1,8 +1,9 @@
 import applyToOneOrMany from './applyToOneOrMany'
 
 /**
-* Delete fields we don't need (anymore)
-*/
+ * Create reduced WordPress post object(s). This is good to generate routes or sitemaps.
+ */
+
 export default function reduceBundle (data) {
   return applyToOneOrMany(_reduceBundle, data)
 }

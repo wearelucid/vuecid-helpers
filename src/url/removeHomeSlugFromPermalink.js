@@ -1,8 +1,18 @@
+import removeTrailingSlash from './removeTrailingSlash'
+
+/**
+ * Remove 'home' from url.
+ *
+ * @example
+ *
+ * removeHomeSlugFromPermalink('https://www.mysite.com/home/')
+ * // -> 'https://www.mysite.com/'
+ */
+
 export default function removeHomeSlugFromPermalink (string) {
-  if (string.endsWith('home')) {
+  let newString = removeTrailingSlash(string)
+  if (newString.endsWith('home')) {
     return string.slice(0, -4)
-  } else if (string.endsWith('home/')) {
-    return string.slice(0, -5)
   } else {
     return string
   }

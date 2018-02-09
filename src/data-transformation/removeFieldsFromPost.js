@@ -1,8 +1,9 @@
 import applyToOneOrMany from './applyToOneOrMany'
 
 /**
-* Delete fields we don't need (anymore)
-*/
+ * Delete fields we don't need (anymore).
+ */
+
 export default function removeFieldsFromPost (data) {
   return applyToOneOrMany(_removeFieldsFromPost, data)
 }

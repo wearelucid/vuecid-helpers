@@ -4,6 +4,13 @@ import generateMetaImage from './generateMetaImage'
 import generateHreflangs from './generateHreflangs'
 import removeTrailingSlash from '../url/removeTrailingSlash'
 
+/**
+ * Generate meta info.
+ *
+ * TODO: Add config argument? Might be good for things like the title pattern/separator `${title} — ${siteName}`
+ * TODO: Add more comments.
+ */
+
 export default function generateMetaInfo (options, post, locale, route) {
   const websiteUrl = options.global.website_url || 'website.url'
   const siteName = options.global.site_title || ''

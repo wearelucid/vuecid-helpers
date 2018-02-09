@@ -1,5 +1,9 @@
 import applyToOneOrMany from './applyToOneOrMany'
 
+/**
+ * Flatten acf in WordPress post object(s).
+ */
+
 export default function flattenACF (data) {
   return applyToOneOrMany(_flattenPost, data)
 }

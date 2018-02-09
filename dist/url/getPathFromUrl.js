@@ -11,6 +11,15 @@ var _verifyLeadingSlash2 = _interopRequireDefault(_verifyLeadingSlash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Regex to get the path from url. Makes sure that there is a leading slash.
+ *
+ * @example
+ *
+ * getPathFromUrl('https://www.mysite.com/en/myslug/')
+ * // -> '/en/myslug/'
+ */
+
 function getPathFromUrl(string) {
   var regex = /(http[s]?:\/\/)?([^/\s]+\/)(.*)/;
   var str = string;

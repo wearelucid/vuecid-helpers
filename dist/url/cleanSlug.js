@@ -19,6 +19,10 @@ var _removeLeadingLang2 = _interopRequireDefault(_removeLeadingLang);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Get the naked slug without any slashes or locales.
+ */
+
 function cleanSlug(string) {
   return (0, _removeLeadingLang2.default)((0, _removeLeadingSlash2.default)((0, _removeTrailingSlash2.default)(string)));
 }

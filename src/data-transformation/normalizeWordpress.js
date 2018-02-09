@@ -1,5 +1,9 @@
 import applyToOneOrMany from './applyToOneOrMany'
 
+/**
+ * Normalize WordPress post object(s).
+ */
+
 export default function normalizeWordpress (data) {
   return applyToOneOrMany(_normalizeWordpressPost, data)
 }

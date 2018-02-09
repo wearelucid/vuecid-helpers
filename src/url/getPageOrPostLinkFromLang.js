@@ -1,6 +1,10 @@
-import getPathFromUrl from '../url/getPathFromUrl'
-import verifyLeadingSlash from '../url/verifyLeadingSlash'
-import removeHomeSlugFromPermalink from '../url/removeHomeSlugFromPermalink'
+import getPathFromUrl from './getPathFromUrl'
+import verifyLeadingSlash from './verifyLeadingSlash'
+import removeHomeSlugFromPermalink from './removeHomeSlugFromPermalink'
+
+/**
+ * Get the path of the translation from a page or post object.
+ */
 
 function navigationToHome (lang, defaultLang) {
   return lang === defaultLang ? '/' : `/${lang}`
