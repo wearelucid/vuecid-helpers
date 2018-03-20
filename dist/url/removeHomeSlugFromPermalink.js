@@ -23,8 +23,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function removeHomeSlugFromPermalink(string) {
   var newString = (0, _removeTrailingSlash2.default)(string);
   if (newString.endsWith('home')) {
-    return string.slice(0, -4);
+    return newString.slice(0, -4);
   } else {
-    return string;
+    return newString;
   }
 }
