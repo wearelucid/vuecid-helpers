@@ -12,8 +12,8 @@ import removeTrailingSlash from './removeTrailingSlash'
 export default function removeHomeSlugFromPermalink (string) {
   let newString = removeTrailingSlash(string)
   if (newString.endsWith('home')) {
-    return string.slice(0, -4)
+    return newString.slice(0, -4)
   } else {
-    return string
+    return newString
   }
 }
