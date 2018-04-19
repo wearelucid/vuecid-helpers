@@ -23,8 +23,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Get the path of the translation from a page or post object.
  */
 
-function navigationToHome(lang, defaultLang) {
-  return lang === defaultLang ? '/' : '/' + lang;
+function navigationTo404(lang, defaultLang) {
+  return lang === defaultLang ? '/404' : '/' + lang + '/404';
 }
 
 function getPageOrPostLinkFromLang(post, lang, defaultLang) {
@@ -36,9 +36,9 @@ function getPageOrPostLinkFromLang(post, lang, defaultLang) {
       var link = '' + (0, _verifyLeadingSlash2.default)((0, _getPathFromUrl2.default)((0, _removeHomeSlugFromPermalink2.default)(translation.permalink)));
       return link;
     } else {
-      return navigationToHome(lang, defaultLang);
+      return navigationTo404(lang, defaultLang);
     }
   } else {
-    return navigationToHome(lang, defaultLang);
+    return navigationTo404(lang, defaultLang);
   }
 }

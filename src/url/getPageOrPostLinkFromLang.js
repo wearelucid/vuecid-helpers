@@ -6,8 +6,8 @@ import removeHomeSlugFromPermalink from './removeHomeSlugFromPermalink'
  * Get the path of the translation from a page or post object.
  */
 
-function navigationToHome (lang, defaultLang) {
-  return lang === defaultLang ? '/' : `/${lang}`
+function navigationTo404 (lang, defaultLang) {
+  return lang === defaultLang ? '/404' : `/${lang}/404`
 }
 
 export default function getPageOrPostLinkFromLang (post, lang, defaultLang) {
@@ -17,9 +17,9 @@ export default function getPageOrPostLinkFromLang (post, lang, defaultLang) {
       const link = `${verifyLeadingSlash(getPathFromUrl(removeHomeSlugFromPermalink(translation.permalink)))}`
       return link
     } else {
-      return navigationToHome(lang, defaultLang)
+      return navigationTo404(lang, defaultLang)
     }
   } else {
-    return navigationToHome(lang, defaultLang)
+    return navigationTo404(lang, defaultLang)
   }
 }
