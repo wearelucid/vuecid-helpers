@@ -12,8 +12,8 @@ function _reduceBundle (data) {
   const reduced = {
     title: data.title,
     polylang: {
-      'current_lang': data.polylang['current_lang'],
-      'translations': data.polylang['translations']
+      'current_lang': data.polylang && data.polylang['current_lang'] ? data.polylang['current_lang'] : '',
+      'translations': data.polylang && data.polylang['translations'] ? data.polylang['translations'] : ''
     },
     lang: data.lang,
     slug: data.slug,
