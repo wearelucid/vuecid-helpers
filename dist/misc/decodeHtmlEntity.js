@@ -11,7 +11,6 @@ exports.default = decodeHtmlEntity;
  */
 
 function decodeHtmlEntity(str) {
-  console.log('str: ', str);
   if (str && typeof str === 'string') {
     return str.replace(/&#(\d+);/g, function (match, dec) {
       return String.fromCharCode(dec);
