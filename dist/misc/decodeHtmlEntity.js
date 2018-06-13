@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -11,7 +11,10 @@ exports.default = decodeHtmlEntity;
  */
 
 function decodeHtmlEntity(str) {
-  return str.replace(/&#(\d+);/g, function (match, dec) {
-    return String.fromCharCode(dec);
-  });
+  console.log('str: ', str);
+  if (str && typeof str === 'string') {
+    return str.replace(/&#(\d+);/g, function (match, dec) {
+      return String.fromCharCode(dec);
+    });
+  }
 }

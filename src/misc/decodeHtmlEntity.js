@@ -5,7 +5,10 @@
  */
 
 export default function decodeHtmlEntity (str) {
-  return str.replace(/&#(\d+);/g, (match, dec) => {
-    return String.fromCharCode(dec)
-  })
+  console.log('str: ', str)
+  if (str && typeof str === 'string') {
+    return str.replace(/&#(\d+);/g, (match, dec) => {
+      return String.fromCharCode(dec)
+    })
+  }
 }
