@@ -59,8 +59,9 @@ export default function generateMetaInfo (options, post, locale, route) {
     metaInfo.meta.push(
       { property: 'og:image', content: image },
       { name: 'twitter:image', content: image },
-      { name: 'og:image:width', content: '1280' }, // make sure your backend crops the og image with this dimensions
-      { name: 'og:image:height', content: '720' }, // make sure your backend crops the og image with this dimensions
+      // make sure your backend crops the og image with this dimensions
+      { name: 'og:image:width', content: '1280' },
+      { name: 'og:image:height', content: '720' },
       { name: 'twitter:card', content: 'summary_large_image' }
     )
   }
