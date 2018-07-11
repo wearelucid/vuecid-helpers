@@ -33,7 +33,6 @@ export default function generateMetaInfo (options, post, locale, route) {
       { name: 'application-name', content: siteName },
       { name: 'description', content: description },
       // { name: 'keywords', content: post.keywords },
-      { rel: 'og:locale', content: locale },
       { property: 'og:title', content: ogTitle },
       { property: 'og:description', content: ogDescription },
       { property: 'og:url', content: canonicalUrl },
