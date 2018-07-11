@@ -33,7 +33,6 @@ export default function generateMetaInfo (options, post, locale, route) {
       { name: 'application-name', content: siteName },
       { name: 'description', content: description },
       // { name: 'keywords', content: post.keywords },
-      { rel: 'og:locale', content: locale },
       { property: 'og:title', content: ogTitle },
       { property: 'og:description', content: ogDescription },
       { property: 'og:url', content: canonicalUrl },
@@ -59,6 +58,9 @@ export default function generateMetaInfo (options, post, locale, route) {
     metaInfo.meta.push(
       { property: 'og:image', content: image },
       { name: 'twitter:image', content: image },
+      // make sure your backend crops the og image with this dimensions
+      { name: 'og:image:width', content: '1280' },
+      { name: 'og:image:height', content: '720' },
       { name: 'twitter:card', content: 'summary_large_image' }
     )
   }
