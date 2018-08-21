@@ -9,6 +9,11 @@ import removeTrailingSlash from '../url/removeTrailingSlash'
  *
  * TODO: Add config argument? Might be good for things like the title pattern/separator `${title} — ${siteName}`
  * TODO: Add more comments.
+ *
+ * hid in meta tags is needed to prevent duplicate properties
+ * https://nuxtjs.org/faq/duplicated-meta-tags/
+ * also they have to override nuxt.configs manifest infos, which sets an hid
+ * therefore the og:description hid has to be called 'hid: "og:description"' and so on
  */
 
 export default function generateMetaInfo (options, post, locale, route) {
@@ -31,16 +36,17 @@ export default function generateMetaInfo (options, post, locale, route) {
     },
     meta: [
       { name: 'application-name', content: siteName },
-      { name: 'description', content: description },
-      // { name: 'keywords', content: post.keywords },
-      { property: 'og:title', content: ogTitle },
-      { property: 'og:description', content: ogDescription },
-      { property: 'og:url', content: canonicalUrl },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: ogSiteName },
-      { property: 'og:locale', content: locale },
-      { name: 'twitter:title', content: ogTitle },
-      { name: 'twitter:description', content: ogDescription }
+      { hid: 'description', name: 'description', content: description },
+      // { hid: 'keywords' name: 'keywords', content: post.keywords },
+      { hid: 'og:locale', rel: 'og:locale', content: locale },
+      { hid: 'og:title', property: 'og:title', content: ogTitle },
+      { hid: 'og:description', property: 'og:description', content: ogDescription },
+      { hid: 'og:url', property: 'og:url', content: canonicalUrl },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:site-name', property: 'og:site_name', content: ogSiteName },
+      { hid: 'og:locale', property: 'og:locale', content: locale },
+      { hid: 'twitter:title', name: 'twitter:title', content: ogTitle },
+      { hid: 'twitter:description', name: 'twitter:description', content: ogDescription }
     ],
     link: [
       { rel: 'canonical', href: canonicalUrl }
@@ -56,12 +62,12 @@ export default function generateMetaInfo (options, post, locale, route) {
 
   if (image) {
     metaInfo.meta.push(
-      { property: 'og:image', content: image },
-      { name: 'twitter:image', content: image },
+      { hid: 'og:image', property: 'og:image', content: image },
+      { hid: 'twitter-image', name: 'twitter:image', content: image },
       // make sure your backend crops the og image with this dimensions
-      { name: 'og:image:width', content: '1280' },
-      { name: 'og:image:height', content: '720' },
-      { name: 'twitter:card', content: 'summary_large_image' }
+      { hid: 'og:image:width', name: 'og:image:width', content: '1280' },
+      { hid: 'og:image:height', name: 'og:image:height', content: '720' },
+      { hid: 'twitter-card', name: 'twitter:card', content: 'summary_large_image' }
     )
   }
 
