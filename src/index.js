@@ -9,10 +9,6 @@ import reduceBundle from './data-transformation/reduceBundle'
 // Meta data utilities
 import generateMetaInfo from './meta/generateMetaInfo'
 
-// Misc utilities
-import cleanString from './misc/cleanString'
-import decodeHtmlEntity from './misc/decodeHtmlEntity'
-
 // Url utilities
 import checkIfSlugIsHome from './url/checkIfSlugIsHome'
 import checkIfWordPressPreview from './url/checkIfWordPressPreview'
@@ -25,6 +21,14 @@ import removeLeadingLang from './url/removeLeadingLang'
 import removeLeadingSlash from './url/removeLeadingSlash'
 import removeTrailingSlash from './url/removeTrailingSlash'
 import verifyLeadingSlash from './url/verifyLeadingSlash'
+
+// Misc utilities
+import cleanString from './misc/cleanString'
+import decodeHtmlEntity from './misc/decodeHtmlEntity'
+
+// Routes utilities
+import generateLocalizedRoutes from './routes/generateLocalizedRoutes'
+import generateRoutesFromData from './routes/generateRoutesFromData'
 
 export {
   // Data transformations
@@ -53,5 +57,9 @@ export {
 
   // Misc utilities
   cleanString,
-  decodeHtmlEntity
+  decodeHtmlEntity,
+
+  // Routes utilities
+  generateLocalizedRoutes,
+  generateRoutesFromData
 }

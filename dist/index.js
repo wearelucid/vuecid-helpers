@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = undefined;
+exports.generateRoutesFromData = exports.generateLocalizedRoutes = exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = undefined;
 
 var _applyToOneOrMany = require('./data-transformation/applyToOneOrMany');
 
@@ -32,14 +32,6 @@ var _reduceBundle2 = _interopRequireDefault(_reduceBundle);
 var _generateMetaInfo = require('./meta/generateMetaInfo');
 
 var _generateMetaInfo2 = _interopRequireDefault(_generateMetaInfo);
-
-var _cleanString = require('./misc/cleanString');
-
-var _cleanString2 = _interopRequireDefault(_cleanString);
-
-var _decodeHtmlEntity = require('./misc/decodeHtmlEntity');
-
-var _decodeHtmlEntity2 = _interopRequireDefault(_decodeHtmlEntity);
 
 var _checkIfSlugIsHome = require('./url/checkIfSlugIsHome');
 
@@ -85,7 +77,29 @@ var _verifyLeadingSlash = require('./url/verifyLeadingSlash');
 
 var _verifyLeadingSlash2 = _interopRequireDefault(_verifyLeadingSlash);
 
+var _cleanString = require('./misc/cleanString');
+
+var _cleanString2 = _interopRequireDefault(_cleanString);
+
+var _decodeHtmlEntity = require('./misc/decodeHtmlEntity');
+
+var _decodeHtmlEntity2 = _interopRequireDefault(_decodeHtmlEntity);
+
+var _generateLocalizedRoutes = require('./routes/generateLocalizedRoutes');
+
+var _generateLocalizedRoutes2 = _interopRequireDefault(_generateLocalizedRoutes);
+
+var _generateRoutesFromData = require('./routes/generateRoutesFromData');
+
+var _generateRoutesFromData2 = _interopRequireDefault(_generateRoutesFromData);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Routes utilities
+
+
+// Misc utilities
+
 
 // Meta data utilities
 // Data transformations
@@ -109,8 +123,7 @@ exports.removeTrailingSlash = _removeTrailingSlash2.default;
 exports.verifyLeadingSlash = _verifyLeadingSlash2.default;
 exports.cleanString = _cleanString2.default;
 exports.decodeHtmlEntity = _decodeHtmlEntity2.default;
+exports.generateLocalizedRoutes = _generateLocalizedRoutes2.default;
+exports.generateRoutesFromData = _generateRoutesFromData2.default;
 
 // Url utilities
-
-
-// Misc utilities
