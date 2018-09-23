@@ -32,6 +32,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * TODO: Add config argument? Might be good for things like the title pattern/separator `${title} — ${siteName}`
  * TODO: Add more comments.
+ *
+ * hid in meta tags is needed to prevent duplicate properties
+ * https://nuxtjs.org/faq/duplicated-meta-tags/
+ * also they have to override nuxt.configs manifest infos, which sets an hid
+ * therefore the og:description hid has to be called 'hid: "og:description"' and so on
  */
 
 function generateMetaInfo(options, post, locale, route) {
