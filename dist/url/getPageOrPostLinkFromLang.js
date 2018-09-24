@@ -1,30 +1,23 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = getPageOrPostLinkFromLang;
 
-var _getPathFromUrl = require('./getPathFromUrl');
+var _getPathFromUrl = _interopRequireDefault(require("./getPathFromUrl"));
 
-var _getPathFromUrl2 = _interopRequireDefault(_getPathFromUrl);
+var _verifyLeadingSlash = _interopRequireDefault(require("./verifyLeadingSlash"));
 
-var _verifyLeadingSlash = require('./verifyLeadingSlash');
-
-var _verifyLeadingSlash2 = _interopRequireDefault(_verifyLeadingSlash);
-
-var _removeHomeSlugFromPermalink = require('./removeHomeSlugFromPermalink');
-
-var _removeHomeSlugFromPermalink2 = _interopRequireDefault(_removeHomeSlugFromPermalink);
+var _removeHomeSlugFromPermalink = _interopRequireDefault(require("./removeHomeSlugFromPermalink"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Get the path of the translation from a page or post object.
  */
-
 function navigationTo404(lang, defaultLang) {
-  return lang === defaultLang ? '/404' : '/' + lang + '/404';
+  return lang === defaultLang ? '/404' : "/".concat(lang, "/404");
 }
 
 function getPageOrPostLinkFromLang(post, lang, defaultLang) {
@@ -32,8 +25,9 @@ function getPageOrPostLinkFromLang(post, lang, defaultLang) {
     var translation = post.polylang.translations.find(function (t) {
       return t.lang === lang;
     });
+
     if (translation) {
-      var link = '' + (0, _verifyLeadingSlash2.default)((0, _getPathFromUrl2.default)((0, _removeHomeSlugFromPermalink2.default)(translation.permalink)));
+      var link = "".concat((0, _verifyLeadingSlash.default)((0, _getPathFromUrl.default)((0, _removeHomeSlugFromPermalink.default)(translation.permalink))));
       return link;
     } else {
       return navigationTo404(lang, defaultLang);

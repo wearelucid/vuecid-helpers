@@ -1,9 +1,10 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = removeLeadingSlash;
+
 /**
  * Remove leading slash.
  *
@@ -12,7 +13,6 @@ exports.default = removeLeadingSlash;
  * removeLeadingSlash('/myslug/')
  * // -> 'myslug/'
  */
-
 function removeLeadingSlash(string) {
   return string.startsWith('/') ? string.substr(1) : string;
 }

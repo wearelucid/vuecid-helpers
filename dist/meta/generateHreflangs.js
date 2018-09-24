@@ -1,13 +1,11 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = generateHreflangs;
 
-var _removeHomeSlugFromPermalink = require('../url/removeHomeSlugFromPermalink');
-
-var _removeHomeSlugFromPermalink2 = _interopRequireDefault(_removeHomeSlugFromPermalink);
+var _removeHomeSlugFromPermalink = _interopRequireDefault(require("../url/removeHomeSlugFromPermalink"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,10 +17,11 @@ function generateHreflangs(post, url) {
       var hreflang = {
         rel: 'alternate',
         hreflang: t.lang,
-        href: (0, _removeHomeSlugFromPermalink2.default)(t.permalink)
+        href: (0, _removeHomeSlugFromPermalink.default)(t.permalink)
       };
       hreflangs.push(hreflang);
     });
   }
+
   return hreflangs;
 }

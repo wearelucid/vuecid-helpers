@@ -1,147 +1,207 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.generateRoutesFromData = exports.generateLocalizedRoutes = exports.findPostInArray = exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = exports.getPreviewData = exports.getData = undefined;
+Object.defineProperty(exports, "getData", {
+  enumerable: true,
+  get: function get() {
+    return _getData.default;
+  }
+});
+Object.defineProperty(exports, "getPreviewData", {
+  enumerable: true,
+  get: function get() {
+    return _getPreviewData.default;
+  }
+});
+Object.defineProperty(exports, "applyToOneOrMany", {
+  enumerable: true,
+  get: function get() {
+    return _applyToOneOrMany.default;
+  }
+});
+Object.defineProperty(exports, "flattenACF", {
+  enumerable: true,
+  get: function get() {
+    return _flattenACF.default;
+  }
+});
+Object.defineProperty(exports, "normalizeWordpress", {
+  enumerable: true,
+  get: function get() {
+    return _normalizeWordpress.default;
+  }
+});
+Object.defineProperty(exports, "removeFieldsFromPost", {
+  enumerable: true,
+  get: function get() {
+    return _removeFieldsFromPost.default;
+  }
+});
+Object.defineProperty(exports, "decodeTitle", {
+  enumerable: true,
+  get: function get() {
+    return _decodeTitle.default;
+  }
+});
+Object.defineProperty(exports, "reduceBundle", {
+  enumerable: true,
+  get: function get() {
+    return _reduceBundle.default;
+  }
+});
+Object.defineProperty(exports, "generateMetaInfo", {
+  enumerable: true,
+  get: function get() {
+    return _generateMetaInfo.default;
+  }
+});
+Object.defineProperty(exports, "checkIfSlugIsHome", {
+  enumerable: true,
+  get: function get() {
+    return _checkIfSlugIsHome.default;
+  }
+});
+Object.defineProperty(exports, "checkIfWordPressPreview", {
+  enumerable: true,
+  get: function get() {
+    return _checkIfWordPressPreview.default;
+  }
+});
+Object.defineProperty(exports, "checkIsHome", {
+  enumerable: true,
+  get: function get() {
+    return _checkIsHome.default;
+  }
+});
+Object.defineProperty(exports, "cleanSlug", {
+  enumerable: true,
+  get: function get() {
+    return _cleanSlug.default;
+  }
+});
+Object.defineProperty(exports, "getPageOrPostLinkFromLang", {
+  enumerable: true,
+  get: function get() {
+    return _getPageOrPostLinkFromLang.default;
+  }
+});
+Object.defineProperty(exports, "getPathFromUrl", {
+  enumerable: true,
+  get: function get() {
+    return _getPathFromUrl.default;
+  }
+});
+Object.defineProperty(exports, "removeHomeSlugFromPermalink", {
+  enumerable: true,
+  get: function get() {
+    return _removeHomeSlugFromPermalink.default;
+  }
+});
+Object.defineProperty(exports, "removeLeadingLang", {
+  enumerable: true,
+  get: function get() {
+    return _removeLeadingLang.default;
+  }
+});
+Object.defineProperty(exports, "removeLeadingSlash", {
+  enumerable: true,
+  get: function get() {
+    return _removeLeadingSlash.default;
+  }
+});
+Object.defineProperty(exports, "removeTrailingSlash", {
+  enumerable: true,
+  get: function get() {
+    return _removeTrailingSlash.default;
+  }
+});
+Object.defineProperty(exports, "verifyLeadingSlash", {
+  enumerable: true,
+  get: function get() {
+    return _verifyLeadingSlash.default;
+  }
+});
+Object.defineProperty(exports, "cleanString", {
+  enumerable: true,
+  get: function get() {
+    return _cleanString.default;
+  }
+});
+Object.defineProperty(exports, "decodeHtmlEntity", {
+  enumerable: true,
+  get: function get() {
+    return _decodeHtmlEntity.default;
+  }
+});
+Object.defineProperty(exports, "findPostInArray", {
+  enumerable: true,
+  get: function get() {
+    return _findPostInArray.default;
+  }
+});
+Object.defineProperty(exports, "generateLocalizedRoutes", {
+  enumerable: true,
+  get: function get() {
+    return _generateLocalizedRoutes.default;
+  }
+});
+Object.defineProperty(exports, "generateRoutesFromData", {
+  enumerable: true,
+  get: function get() {
+    return _generateRoutesFromData.default;
+  }
+});
 
-var _getData = require('./api/getData');
+var _getData = _interopRequireDefault(require("./api/getData"));
 
-var _getData2 = _interopRequireDefault(_getData);
+var _getPreviewData = _interopRequireDefault(require("./api/getPreviewData"));
 
-var _getPreviewData = require('./api/getPreviewData');
+var _applyToOneOrMany = _interopRequireDefault(require("./data-transformation/applyToOneOrMany"));
 
-var _getPreviewData2 = _interopRequireDefault(_getPreviewData);
+var _flattenACF = _interopRequireDefault(require("./data-transformation/flattenACF"));
 
-var _applyToOneOrMany = require('./data-transformation/applyToOneOrMany');
+var _normalizeWordpress = _interopRequireDefault(require("./data-transformation/normalizeWordpress"));
 
-var _applyToOneOrMany2 = _interopRequireDefault(_applyToOneOrMany);
+var _removeFieldsFromPost = _interopRequireDefault(require("./data-transformation/removeFieldsFromPost"));
 
-var _flattenACF = require('./data-transformation/flattenACF');
+var _decodeTitle = _interopRequireDefault(require("./data-transformation/decodeTitle"));
 
-var _flattenACF2 = _interopRequireDefault(_flattenACF);
+var _reduceBundle = _interopRequireDefault(require("./data-transformation/reduceBundle"));
 
-var _normalizeWordpress = require('./data-transformation/normalizeWordpress');
+var _generateMetaInfo = _interopRequireDefault(require("./meta/generateMetaInfo"));
 
-var _normalizeWordpress2 = _interopRequireDefault(_normalizeWordpress);
+var _checkIfSlugIsHome = _interopRequireDefault(require("./url/checkIfSlugIsHome"));
 
-var _removeFieldsFromPost = require('./data-transformation/removeFieldsFromPost');
+var _checkIfWordPressPreview = _interopRequireDefault(require("./url/checkIfWordPressPreview"));
 
-var _removeFieldsFromPost2 = _interopRequireDefault(_removeFieldsFromPost);
+var _checkIsHome = _interopRequireDefault(require("./url/checkIsHome"));
 
-var _decodeTitle = require('./data-transformation/decodeTitle');
+var _cleanSlug = _interopRequireDefault(require("./url/cleanSlug"));
 
-var _decodeTitle2 = _interopRequireDefault(_decodeTitle);
+var _getPageOrPostLinkFromLang = _interopRequireDefault(require("./url/getPageOrPostLinkFromLang"));
 
-var _reduceBundle = require('./data-transformation/reduceBundle');
+var _getPathFromUrl = _interopRequireDefault(require("./url/getPathFromUrl"));
 
-var _reduceBundle2 = _interopRequireDefault(_reduceBundle);
+var _removeHomeSlugFromPermalink = _interopRequireDefault(require("./url/removeHomeSlugFromPermalink"));
 
-var _generateMetaInfo = require('./meta/generateMetaInfo');
+var _removeLeadingLang = _interopRequireDefault(require("./url/removeLeadingLang"));
 
-var _generateMetaInfo2 = _interopRequireDefault(_generateMetaInfo);
+var _removeLeadingSlash = _interopRequireDefault(require("./url/removeLeadingSlash"));
 
-var _checkIfSlugIsHome = require('./url/checkIfSlugIsHome');
+var _removeTrailingSlash = _interopRequireDefault(require("./url/removeTrailingSlash"));
 
-var _checkIfSlugIsHome2 = _interopRequireDefault(_checkIfSlugIsHome);
+var _verifyLeadingSlash = _interopRequireDefault(require("./url/verifyLeadingSlash"));
 
-var _checkIfWordPressPreview = require('./url/checkIfWordPressPreview');
+var _cleanString = _interopRequireDefault(require("./misc/cleanString"));
 
-var _checkIfWordPressPreview2 = _interopRequireDefault(_checkIfWordPressPreview);
+var _decodeHtmlEntity = _interopRequireDefault(require("./misc/decodeHtmlEntity"));
 
-var _checkIsHome = require('./url/checkIsHome');
+var _findPostInArray = _interopRequireDefault(require("./misc/findPostInArray"));
 
-var _checkIsHome2 = _interopRequireDefault(_checkIsHome);
+var _generateLocalizedRoutes = _interopRequireDefault(require("./routes/generateLocalizedRoutes"));
 
-var _cleanSlug = require('./url/cleanSlug');
-
-var _cleanSlug2 = _interopRequireDefault(_cleanSlug);
-
-var _getPageOrPostLinkFromLang = require('./url/getPageOrPostLinkFromLang');
-
-var _getPageOrPostLinkFromLang2 = _interopRequireDefault(_getPageOrPostLinkFromLang);
-
-var _getPathFromUrl = require('./url/getPathFromUrl');
-
-var _getPathFromUrl2 = _interopRequireDefault(_getPathFromUrl);
-
-var _removeHomeSlugFromPermalink = require('./url/removeHomeSlugFromPermalink');
-
-var _removeHomeSlugFromPermalink2 = _interopRequireDefault(_removeHomeSlugFromPermalink);
-
-var _removeLeadingLang = require('./url/removeLeadingLang');
-
-var _removeLeadingLang2 = _interopRequireDefault(_removeLeadingLang);
-
-var _removeLeadingSlash = require('./url/removeLeadingSlash');
-
-var _removeLeadingSlash2 = _interopRequireDefault(_removeLeadingSlash);
-
-var _removeTrailingSlash = require('./url/removeTrailingSlash');
-
-var _removeTrailingSlash2 = _interopRequireDefault(_removeTrailingSlash);
-
-var _verifyLeadingSlash = require('./url/verifyLeadingSlash');
-
-var _verifyLeadingSlash2 = _interopRequireDefault(_verifyLeadingSlash);
-
-var _cleanString = require('./misc/cleanString');
-
-var _cleanString2 = _interopRequireDefault(_cleanString);
-
-var _decodeHtmlEntity = require('./misc/decodeHtmlEntity');
-
-var _decodeHtmlEntity2 = _interopRequireDefault(_decodeHtmlEntity);
-
-var _findPostInArray = require('./misc/findPostInArray');
-
-var _findPostInArray2 = _interopRequireDefault(_findPostInArray);
-
-var _generateLocalizedRoutes = require('./routes/generateLocalizedRoutes');
-
-var _generateLocalizedRoutes2 = _interopRequireDefault(_generateLocalizedRoutes);
-
-var _generateRoutesFromData = require('./routes/generateRoutesFromData');
-
-var _generateRoutesFromData2 = _interopRequireDefault(_generateRoutesFromData);
+var _generateRoutesFromData = _interopRequireDefault(require("./routes/generateRoutesFromData"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Routes utilities
-
-
-// Url utilities
-exports.getData = _getData2.default;
-exports.getPreviewData = _getPreviewData2.default;
-exports.applyToOneOrMany = _applyToOneOrMany2.default;
-exports.flattenACF = _flattenACF2.default;
-exports.normalizeWordpress = _normalizeWordpress2.default;
-exports.removeFieldsFromPost = _removeFieldsFromPost2.default;
-exports.decodeTitle = _decodeTitle2.default;
-exports.reduceBundle = _reduceBundle2.default;
-exports.generateMetaInfo = _generateMetaInfo2.default;
-exports.checkIfSlugIsHome = _checkIfSlugIsHome2.default;
-exports.checkIfWordPressPreview = _checkIfWordPressPreview2.default;
-exports.checkIsHome = _checkIsHome2.default;
-exports.cleanSlug = _cleanSlug2.default;
-exports.getPageOrPostLinkFromLang = _getPageOrPostLinkFromLang2.default;
-exports.getPathFromUrl = _getPathFromUrl2.default;
-exports.removeHomeSlugFromPermalink = _removeHomeSlugFromPermalink2.default;
-exports.removeLeadingLang = _removeLeadingLang2.default;
-exports.removeLeadingSlash = _removeLeadingSlash2.default;
-exports.removeTrailingSlash = _removeTrailingSlash2.default;
-exports.verifyLeadingSlash = _verifyLeadingSlash2.default;
-exports.cleanString = _cleanString2.default;
-exports.decodeHtmlEntity = _decodeHtmlEntity2.default;
-exports.findPostInArray = _findPostInArray2.default;
-exports.generateLocalizedRoutes = _generateLocalizedRoutes2.default;
-exports.generateRoutesFromData = _generateRoutesFromData2.default;
-
-// Misc utilities
-
-
-// Meta data utilities
-
-
-// Data transformations
-// API

@@ -9,7 +9,7 @@ export default function flattenACF (data) {
 }
 
 function _flattenPost (post) {
-  if (!post.acf) {
+  if (post === null || typeof post !== 'object') {
     return post
   } else {
     const flatPost = { ...post, ...post.acf }
