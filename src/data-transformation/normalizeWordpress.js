@@ -9,7 +9,7 @@ export default function normalizeWordpress (data) {
 }
 
 function _normalizeWordpressPost (post) {
-  if (!post.title) {
+  if (post === null || typeof post !== 'object') {
     return post
   } else {
     post.title = post.title.rendered

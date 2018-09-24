@@ -12,7 +12,5 @@ export default function getPreviewData(backendUrl, previewUrl) {
         flattenACF
       )
     })
-    .then(res => {
-      res.data
-    })
+    .then(res => res.data)
 }

@@ -1,9 +1,10 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = verifyLeadingSlash;
+
 /**
  * Verify leading slash.
  *
@@ -12,7 +13,6 @@ exports.default = verifyLeadingSlash;
  * verifyLeadingSlash('myslug')
  * // -> '/myslug'
  */
-
 function verifyLeadingSlash(string) {
-  return string.startsWith('/') ? string : '/' + string;
+  return string.startsWith('/') ? string : "/".concat(string);
 }
