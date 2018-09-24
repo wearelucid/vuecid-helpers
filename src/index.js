@@ -25,6 +25,7 @@ import verifyLeadingSlash from './url/verifyLeadingSlash'
 // Misc utilities
 import cleanString from './misc/cleanString'
 import decodeHtmlEntity from './misc/decodeHtmlEntity'
+import findPostInArray from './misc/findPostInArray'
 
 // Routes utilities
 import generateLocalizedRoutes from './routes/generateLocalizedRoutes'
@@ -58,6 +59,7 @@ export {
   // Misc utilities
   cleanString,
   decodeHtmlEntity,
+  findPostInArray,
 
   // Routes utilities
   generateLocalizedRoutes,
