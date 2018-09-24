@@ -3,7 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.generateRoutesFromData = exports.generateLocalizedRoutes = exports.findPostInArray = exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = undefined;
+exports.generateRoutesFromData = exports.generateLocalizedRoutes = exports.findPostInArray = exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = exports.getPreviewData = exports.getData = undefined;
+
+var _getData = require('./api/getData');
+
+var _getData2 = _interopRequireDefault(_getData);
+
+var _getPreviewData = require('./api/getPreviewData');
+
+var _getPreviewData2 = _interopRequireDefault(_getPreviewData);
 
 var _applyToOneOrMany = require('./data-transformation/applyToOneOrMany');
 
@@ -103,6 +111,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Url utilities
+exports.getData = _getData2.default;
+exports.getPreviewData = _getPreviewData2.default;
 exports.applyToOneOrMany = _applyToOneOrMany2.default;
 exports.flattenACF = _flattenACF2.default;
 exports.normalizeWordpress = _normalizeWordpress2.default;
@@ -131,4 +141,7 @@ exports.generateRoutesFromData = _generateRoutesFromData2.default;
 
 
 // Meta data utilities
+
+
 // Data transformations
+// API

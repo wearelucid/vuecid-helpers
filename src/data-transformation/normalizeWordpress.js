@@ -9,8 +9,12 @@ export default function normalizeWordpress (data) {
 }
 
 function _normalizeWordpressPost (post) {
-  post.title = post.title.rendered
-  post.content = post.content.rendered
-  post.excerpt = post.excerpt ? post.excerpt.rendered : null
-  return post
+  if (!post.title) {
+    return post
+  } else {
+    post.title = post.title.rendered
+    post.content = post.content.rendered
+    post.excerpt = post.excerpt ? post.excerpt.rendered : null
+    return post
+  }
 }
