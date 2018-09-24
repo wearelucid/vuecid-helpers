@@ -23,6 +23,10 @@ function flattenACF(data) {
 }
 
 function _flattenPost(post) {
-  var flatPost = _extends({}, post, post.acf);
-  return flatPost;
+  if (!post.acf) {
+    return post;
+  } else {
+    var flatPost = _extends({}, post, post.acf);
+    return flatPost;
+  }
 }

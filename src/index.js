@@ -1,3 +1,7 @@
+// API
+import getData from './api/getData'
+import getPreviewData from './api/getPreviewData'
+
 // Data transformations
 import applyToOneOrMany from './data-transformation/applyToOneOrMany'
 import flattenACF from './data-transformation/flattenACF'
@@ -32,6 +36,10 @@ import generateLocalizedRoutes from './routes/generateLocalizedRoutes'
 import generateRoutesFromData from './routes/generateRoutesFromData'
 
 export {
+  // Data transformations
+  getData,
+  getPreviewData,
+
   // Data transformations
   applyToOneOrMany,
   flattenACF,
