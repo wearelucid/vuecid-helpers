@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.generateRoutesFromData = exports.generateLocalizedRoutes = exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = undefined;
+exports.generateRoutesFromData = exports.generateLocalizedRoutes = exports.findPostInArray = exports.decodeHtmlEntity = exports.cleanString = exports.verifyLeadingSlash = exports.removeTrailingSlash = exports.removeLeadingSlash = exports.removeLeadingLang = exports.removeHomeSlugFromPermalink = exports.getPathFromUrl = exports.getPageOrPostLinkFromLang = exports.cleanSlug = exports.checkIsHome = exports.checkIfWordPressPreview = exports.checkIfSlugIsHome = exports.generateMetaInfo = exports.reduceBundle = exports.decodeTitle = exports.removeFieldsFromPost = exports.normalizeWordpress = exports.flattenACF = exports.applyToOneOrMany = undefined;
 
 var _applyToOneOrMany = require('./data-transformation/applyToOneOrMany');
 
@@ -85,6 +85,10 @@ var _decodeHtmlEntity = require('./misc/decodeHtmlEntity');
 
 var _decodeHtmlEntity2 = _interopRequireDefault(_decodeHtmlEntity);
 
+var _findPostInArray = require('./misc/findPostInArray');
+
+var _findPostInArray2 = _interopRequireDefault(_findPostInArray);
+
 var _generateLocalizedRoutes = require('./routes/generateLocalizedRoutes');
 
 var _generateLocalizedRoutes2 = _interopRequireDefault(_generateLocalizedRoutes);
@@ -98,11 +102,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Routes utilities
 
 
-// Misc utilities
-
-
-// Meta data utilities
-// Data transformations
+// Url utilities
 exports.applyToOneOrMany = _applyToOneOrMany2.default;
 exports.flattenACF = _flattenACF2.default;
 exports.normalizeWordpress = _normalizeWordpress2.default;
@@ -123,7 +123,12 @@ exports.removeTrailingSlash = _removeTrailingSlash2.default;
 exports.verifyLeadingSlash = _verifyLeadingSlash2.default;
 exports.cleanString = _cleanString2.default;
 exports.decodeHtmlEntity = _decodeHtmlEntity2.default;
+exports.findPostInArray = _findPostInArray2.default;
 exports.generateLocalizedRoutes = _generateLocalizedRoutes2.default;
 exports.generateRoutesFromData = _generateRoutesFromData2.default;
 
-// Url utilities
+// Misc utilities
+
+
+// Meta data utilities
+// Data transformations
