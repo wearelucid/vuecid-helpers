@@ -7,6 +7,8 @@ exports.default = generateRoutesFromData;
 
 var _getPathFromUrl = _interopRequireDefault(require("../url/getPathFromUrl"));
 
+var _verifyTrailingSlash = _interopRequireDefault(require("../url/verifyTrailingSlash"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -40,17 +42,21 @@ function generateRoutesFromData() {
   }); // Get path from url for each post type from locaized JSON and make an array :-)
 
   var langRoutes = _postTypes.reduce(function (acc, type) {
-    return _toConsumableArray(acc).concat(_toConsumableArray(localizedJson.map(function (l) {
+    return _toConsumableArray(acc.map(function (l) {
+      return l.map(function (p) {
+        return (0, _verifyTrailingSlash.default)(p);
+      }); // Verify trailing slash so we don't get duplicate route generation
+    })).concat(_toConsumableArray(localizedJson.map(function (l) {
       return l[type].map(function (p) {
-        return (0, _getPathFromUrl.default)(p.link);
-      });
+        return (0, _verifyTrailingSlash.default)((0, _getPathFromUrl.default)(p.link));
+      }); // Verify trailing slash so we don't get duplicate route generation
     })));
   }, []); // acc
   // Use root '/' for default lang
 
 
   var langRoutesRoot = options.langs.map(function (l) {
-    return l.default ? '/' : l.slug;
+    return l.default ? '/' : "/".concat(l.slug, "/");
   });
   return _toConsumableArray(langRoutesRoot).concat(_toConsumableArray(langRoutes.reduce(function (acc, cur) {
     return _toConsumableArray(acc).concat(_toConsumableArray(cur));

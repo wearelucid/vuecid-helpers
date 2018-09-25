@@ -25,6 +25,7 @@ import removeLeadingLang from './url/removeLeadingLang'
 import removeLeadingSlash from './url/removeLeadingSlash'
 import removeTrailingSlash from './url/removeTrailingSlash'
 import verifyLeadingSlash from './url/verifyLeadingSlash'
+import verifyTrailingSlash from './url/verifyTrailingSlash'
 
 // Misc utilities
 import cleanString from './misc/cleanString'
@@ -63,6 +64,7 @@ export {
   removeLeadingSlash,
   removeTrailingSlash,
   verifyLeadingSlash,
+  verifyTrailingSlash,
 
   // Misc utilities
   cleanString,

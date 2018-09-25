@@ -123,6 +123,12 @@ Object.defineProperty(exports, "verifyLeadingSlash", {
     return _verifyLeadingSlash.default;
   }
 });
+Object.defineProperty(exports, "verifyTrailingSlash", {
+  enumerable: true,
+  get: function get() {
+    return _verifyTrailingSlash.default;
+  }
+});
 Object.defineProperty(exports, "cleanString", {
   enumerable: true,
   get: function get() {
@@ -193,6 +199,8 @@ var _removeLeadingSlash = _interopRequireDefault(require("./url/removeLeadingSla
 var _removeTrailingSlash = _interopRequireDefault(require("./url/removeTrailingSlash"));
 
 var _verifyLeadingSlash = _interopRequireDefault(require("./url/verifyLeadingSlash"));
+
+var _verifyTrailingSlash = _interopRequireDefault(require("./url/verifyTrailingSlash"));
 
 var _cleanString = _interopRequireDefault(require("./misc/cleanString"));
 
