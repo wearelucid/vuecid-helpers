@@ -1,4 +1,5 @@
 import getPathFromUrl from '../url/getPathFromUrl'
+import verifyTrailingSlash from '../url/verifyTrailingSlash'
 
 // Load JSON file
 function loadLocalizedJson(path, lang) {
@@ -19,15 +20,17 @@ export default function generateRoutesFromData(options = {
   // Get path from url for each post type from locaized JSON and make an array :-)
   const langRoutes = _postTypes.reduce((acc, type) => {
     return [
-      ...acc,
+      ...acc.map(l => {
+        return l.map(p => verifyTrailingSlash(p)) // Verify trailing slash so we don't get duplicate route generation
+      }),
       ...localizedJson.map(l => {
-        return l[type].map(p => getPathFromUrl(p.link))
+        return l[type].map(p => verifyTrailingSlash(getPathFromUrl(p.link))) // Verify trailing slash so we don't get duplicate route generation
       })
     ]
   }, []) // acc
 
   // Use root '/' for default lang
-  const langRoutesRoot = options.langs.map(l => (l.default ? '/' : l.slug))
+  const langRoutesRoot = options.langs.map(l => (l.default ? '/' : `/${l.slug}/`))
 
   return [
     ...langRoutesRoot,
