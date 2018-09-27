@@ -2,6 +2,6 @@
  * Test if slug is 'home'.
  */
 
-export default function checkIfSlugIsHome (slug) {
-  return slug === 'home'
+export default function checkIfSlugIsHome (slug, homeSlug = 'home') {
+  return slug === homeSlug
 }

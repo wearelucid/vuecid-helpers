@@ -9,5 +9,6 @@ exports.default = checkIfSlugIsHome;
  * Test if slug is 'home'.
  */
 function checkIfSlugIsHome(slug) {
-  return slug === 'home';
+  var homeSlug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'home';
+  return slug === homeSlug;
 }

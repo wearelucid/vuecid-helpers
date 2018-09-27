@@ -14,6 +14,7 @@ import reduceBundle from './data-transformation/reduceBundle'
 import generateMetaInfo from './meta/generateMetaInfo'
 
 // Url utilities
+import checkAndGetHomeSlug from './url/checkAndGetHomeSlug'
 import checkIfSlugIsHome from './url/checkIfSlugIsHome'
 import checkIfWordPressPreview from './url/checkIfWordPressPreview'
 import checkIsHome from './url/checkIsHome'
@@ -53,6 +54,7 @@ export {
   generateMetaInfo,
 
   // Url utilities
+  checkAndGetHomeSlug,
   checkIfSlugIsHome,
   checkIfWordPressPreview,
   checkIsHome,
