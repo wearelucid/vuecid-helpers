@@ -57,6 +57,12 @@ Object.defineProperty(exports, "generateMetaInfo", {
     return _generateMetaInfo.default;
   }
 });
+Object.defineProperty(exports, "checkAndGetHomeSlug", {
+  enumerable: true,
+  get: function get() {
+    return _checkAndGetHomeSlug.default;
+  }
+});
 Object.defineProperty(exports, "checkIfSlugIsHome", {
   enumerable: true,
   get: function get() {
@@ -177,6 +183,8 @@ var _decodeTitle = _interopRequireDefault(require("./data-transformation/decodeT
 var _reduceBundle = _interopRequireDefault(require("./data-transformation/reduceBundle"));
 
 var _generateMetaInfo = _interopRequireDefault(require("./meta/generateMetaInfo"));
+
+var _checkAndGetHomeSlug = _interopRequireDefault(require("./url/checkAndGetHomeSlug"));
 
 var _checkIfSlugIsHome = _interopRequireDefault(require("./url/checkIfSlugIsHome"));
 
