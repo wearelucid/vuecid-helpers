@@ -29,12 +29,14 @@ function generateRoutesFromData() {
     langs: [],
     postTypes: {},
     dataPath: '',
-    bundle: ''
+    bundle: '',
+    homeSlug: 'home'
   };
 
+  // Get an array of post types, something like [ 'pages', 'posts' ]
   var _postTypes = options.postTypes.map(function (pt) {
     return pt.type;
-  }); // Save data JSON files
+  }); // Load and save localized option JSON's, includes all pages and posts of our languages, something we can work with :)
 
 
   var localizedJson = options.langs.map(function (l) {
@@ -43,7 +45,14 @@ function generateRoutesFromData() {
 
   var langRoutes = _postTypes.reduce(function (acc, type) {
     return _toConsumableArray(acc.map(function (l) {
-      return l.map(function (p) {
+      // Kick out all the pages containing the home slug
+      // This could also delete a page that contains a string linke '…/home…'
+      // maybe a page with the permalink /pages/something/home-sweet-home
+      // Sadly this step is necessary since we can not redirect() with our middleware during generate
+      var f = l.filter(function (s) {
+        return !s.includes("/".concat(options.homeSlug));
+      });
+      return f.map(function (p) {
         return (0, _verifyTrailingSlash.default)(p);
       }); // Verify trailing slash so we don't get duplicate route generation
     })).concat(_toConsumableArray(localizedJson.map(function (l) {
