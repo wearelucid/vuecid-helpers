@@ -21,7 +21,7 @@ import checkIsHome from './url/checkIsHome'
 import cleanSlug from './url/cleanSlug'
 import getPageOrPostLinkFromLang from './url/getPageOrPostLinkFromLang'
 import getPathFromUrl from './url/getPathFromUrl'
-import removeHomeSlugFromPermalink from './url/removeHomeSlugFromPermalink'
+import removeHomeSlug from './url/removeHomeSlug'
 import removeLeadingLang from './url/removeLeadingLang'
 import removeLeadingSlash from './url/removeLeadingSlash'
 import removeTrailingSlash from './url/removeTrailingSlash'
@@ -61,7 +61,7 @@ export {
   cleanSlug,
   getPageOrPostLinkFromLang,
   getPathFromUrl,
-  removeHomeSlugFromPermalink,
+  removeHomeSlug,
   removeLeadingLang,
   removeLeadingSlash,
   removeTrailingSlash,

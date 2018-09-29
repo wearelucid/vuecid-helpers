@@ -9,7 +9,7 @@ var _getPathFromUrl = _interopRequireDefault(require("./getPathFromUrl"));
 
 var _verifyLeadingSlash = _interopRequireDefault(require("./verifyLeadingSlash"));
 
-var _removeHomeSlugFromPermalink = _interopRequireDefault(require("./removeHomeSlugFromPermalink"));
+var _removeHomeSlug = _interopRequireDefault(require("./removeHomeSlug"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,7 +27,7 @@ function getPageOrPostLinkFromLang(post, lang, defaultLang) {
     });
 
     if (translation) {
-      var link = "".concat((0, _verifyLeadingSlash.default)((0, _getPathFromUrl.default)((0, _removeHomeSlugFromPermalink.default)(translation.permalink))));
+      var link = "".concat((0, _verifyLeadingSlash.default)((0, _getPathFromUrl.default)((0, _removeHomeSlug.default)(translation.permalink))));
       return link;
     } else {
       return navigationTo404(lang, defaultLang);

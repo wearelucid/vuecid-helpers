@@ -11,7 +11,7 @@ exports.default = verifyTrailingSlash;
  * @example
  *
  * verifyTrailingSlash('myslug')
- * // -> '/myslug'
+ * // -> 'myslug/'
  */
 function verifyTrailingSlash(string) {
   return string.endsWith('/') ? string : "".concat(string, "/");
