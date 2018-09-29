@@ -4,7 +4,7 @@
  * @example
  *
  * verifyTrailingSlash('myslug')
- * // -> '/myslug'
+ * // -> 'myslug/'
  */
 
 export default function verifyTrailingSlash (string) {

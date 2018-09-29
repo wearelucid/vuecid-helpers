@@ -1,4 +1,4 @@
-import removeHomeSlugFromPermalink from '../url/removeHomeSlugFromPermalink'
+import removeHomeSlug from '../url/removeHomeSlug'
 
 export default function generateHreflangs (post, url) {
   const hreflangs = []
@@ -8,7 +8,7 @@ export default function generateHreflangs (post, url) {
       const hreflang = {
         rel: 'alternate',
         hreflang: t.lang,
-        href: removeHomeSlugFromPermalink(t.permalink)
+        href: removeHomeSlug(t.permalink)
       }
       hreflangs.push(hreflang)
     })

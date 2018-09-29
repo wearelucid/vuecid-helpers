@@ -1,6 +1,6 @@
 import getPathFromUrl from './getPathFromUrl'
 import verifyLeadingSlash from './verifyLeadingSlash'
-import removeHomeSlugFromPermalink from './removeHomeSlugFromPermalink'
+import removeHomeSlug from './removeHomeSlug'
 
 /**
  * Get the path of the translation from a page or post object.
@@ -14,7 +14,7 @@ export default function getPageOrPostLinkFromLang (post, lang, defaultLang) {
   if (post && post.polylang && post.polylang.translations) {
     const translation = post.polylang.translations.find(t => t.lang === lang)
     if (translation) {
-      const link = `${verifyLeadingSlash(getPathFromUrl(removeHomeSlugFromPermalink(translation.permalink)))}`
+      const link = `${verifyLeadingSlash(getPathFromUrl(removeHomeSlug(translation.permalink)))}`
       return link
     } else {
       return navigationTo404(lang, defaultLang)

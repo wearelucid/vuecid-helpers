@@ -99,10 +99,10 @@ Object.defineProperty(exports, "getPathFromUrl", {
     return _getPathFromUrl.default;
   }
 });
-Object.defineProperty(exports, "removeHomeSlugFromPermalink", {
+Object.defineProperty(exports, "removeHomeSlug", {
   enumerable: true,
   get: function get() {
-    return _removeHomeSlugFromPermalink.default;
+    return _removeHomeSlug.default;
   }
 });
 Object.defineProperty(exports, "removeLeadingLang", {
@@ -198,7 +198,7 @@ var _getPageOrPostLinkFromLang = _interopRequireDefault(require("./url/getPageOr
 
 var _getPathFromUrl = _interopRequireDefault(require("./url/getPathFromUrl"));
 
-var _removeHomeSlugFromPermalink = _interopRequireDefault(require("./url/removeHomeSlugFromPermalink"));
+var _removeHomeSlug = _interopRequireDefault(require("./url/removeHomeSlug"));
 
 var _removeLeadingLang = _interopRequireDefault(require("./url/removeLeadingLang"));
 
