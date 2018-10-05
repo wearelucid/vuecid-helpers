@@ -1,6 +1,6 @@
 {
   "name": "@wearelucid/vuecid-helpers",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Vuecid Utility Library",
   "main": "dist/index.js",
   "repository": "https://github.com/wearelucid/vuecid-helpers.git",

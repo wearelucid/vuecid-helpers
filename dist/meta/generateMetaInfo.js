@@ -15,6 +15,8 @@ var _generateHreflangs = _interopRequireDefault(require("./generateHreflangs"));
 
 var _removeTrailingSlash = _interopRequireDefault(require("../url/removeTrailingSlash"));
 
+var _removeLeadingSlash = _interopRequireDefault(require("../url/removeLeadingSlash"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -39,7 +41,7 @@ function generateMetaInfo(options, post, locale, route) {
   var twitterHandle = options.site_twitter_handle || false;
   var image = (0, _generateMetaImage.default)(options, post);
   var hreflangs = (0, _generateHreflangs.default)(post, websiteUrl);
-  var canonicalUrl = websiteUrl + (0, _removeTrailingSlash.default)(route);
+  var canonicalUrl = websiteUrl + (0, _removeLeadingSlash.default)((0, _removeTrailingSlash.default)(route));
   var metaInfo = {
     title: "".concat(title, " \u2014 ").concat(siteName),
     htmlAttrs: {

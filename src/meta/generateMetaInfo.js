@@ -3,6 +3,7 @@ import generateMetaDescription from './generateMetaDescription'
 import generateMetaImage from './generateMetaImage'
 import generateHreflangs from './generateHreflangs'
 import removeTrailingSlash from '../url/removeTrailingSlash'
+import removeLeadingSlash from '../url/removeLeadingSlash'
 
 /**
  * Generate meta info.
@@ -27,7 +28,7 @@ export default function generateMetaInfo (options, post, locale, route) {
   const twitterHandle = options.site_twitter_handle || false
   const image = generateMetaImage(options, post)
   const hreflangs = generateHreflangs(post, websiteUrl)
-  const canonicalUrl = websiteUrl + removeTrailingSlash(route)
+  const canonicalUrl = websiteUrl + removeLeadingSlash(removeTrailingSlash(route))
 
   const metaInfo = {
     title: `${title} — ${siteName}`,
