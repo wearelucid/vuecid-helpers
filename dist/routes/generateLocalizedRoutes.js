@@ -23,27 +23,14 @@ function generateLocalizedRoutes() {
     baseRoutes: [],
     defaultLang: '',
     langs: [],
-    routesAliases: {}
+    routesAliases: {},
+    isChild: false
   };
   var localizedRoutes = []; // Loop through all generated routes
 
   options.baseRoutes.forEach(function (baseRoute) {
     var children = baseRoute.children,
-        path = baseRoute.path;
-
-    if (children) {
-      console.log("children:", children);
-      children.map(function (c) {
-        // extend path by childs path
-        if (c.path.length) {
-          // console.log('c.path: ', c.path)
-          // console.log('path: ', path)
-          c.path = "".concat(path, "/").concat(c.path); // console.log('c.path: ', c.path)
-        }
-      });
-      console.log("children:", children);
-    } // Loop through all configured languages
-
+        path = baseRoute.path; // Loop through all configured languages
 
     options.langs.forEach(function (lang) {
       // Get values from baseRoute
@@ -53,26 +40,23 @@ function generateLocalizedRoutes() {
           children = baseRoute.children; // Recursively generate routes for all children if there are any
 
       if (children) {
-        // forach choödrem child = vbaseroute + chlld
         children = generateLocalizedRoutes({
           baseRoutes: children,
           langs: [lang],
           defaultLang: options.defaultLang,
-          routesAliases: options.routesAliases
+          routesAliases: options.routesAliases,
+          isChild: true
         });
       } // Handle route aliases
 
 
       if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".").concat(lang.slug))) {
         path = options.routesAliases[name][lang.slug];
-      }
+      } // Prefix path with lang slug if not default lang
+      // But don't do it for children
 
-      console.log('🐦- - - - - ------------ - - - -');
-      console.log('lang.lang: ', lang.lang);
-      console.log('options.defaultLang: ', options.defaultLang);
-      console.log('- - - - - ------------ - - - -🚀'); // Prefix path with lang slug if not default lang
 
-      if (lang.lang !== options.defaultLang) {
+      if (lang.lang !== options.defaultLang && !options.isChild) {
         // Add leading / if needed (ie. children routes)
         if (path.match(/^\//) === null) {
           path = "/".concat(path);
