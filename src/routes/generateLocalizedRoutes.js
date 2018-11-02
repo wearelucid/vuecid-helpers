@@ -10,12 +10,15 @@ export default function generateLocalizedRoutes(options = {
   baseRoutes: [],
   defaultLang: '',
   langs: [],
-  routesAliases: {}
+  routesAliases: {},
+  isChild: false
 }) {
   const localizedRoutes = []
-
+  
   // Loop through all generated routes
   options.baseRoutes.forEach(baseRoute => {
+    const { children, path } = baseRoute 
+    
     // Loop through all configured languages
     options.langs.forEach(lang => {
       // Get values from baseRoute
@@ -24,16 +27,23 @@ export default function generateLocalizedRoutes(options = {
 
       // Recursively generate routes for all children if there are any
       if (children) {
-        children = generateLocalizedRoutes(children, [lang])
+        children = generateLocalizedRoutes({
+          baseRoutes: children, 
+          langs: [lang], 
+          defaultLang: options.defaultLang,
+          routesAliases: options.routesAliases,
+          isChild: true
+         })
       }
 
       // Handle route aliases
       if (_has(options.routesAliases, `${name}.${lang.slug}`)) {
         path = options.routesAliases[name][lang.slug]
       }
-
+      
       // Prefix path with lang slug if not default lang
-      if (lang.lang !== options.defaultLang) {
+      // But don't do it for children
+      if (lang.lang !== options.defaultLang && !options.isChild) {
         // Add leading / if needed (ie. children routes)
         if (path.match(/^\//) === null) {
           path = `/${path}`
