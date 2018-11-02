@@ -28,7 +28,23 @@ function generateLocalizedRoutes() {
   var localizedRoutes = []; // Loop through all generated routes
 
   options.baseRoutes.forEach(function (baseRoute) {
-    // Loop through all configured languages
+    var children = baseRoute.children,
+        path = baseRoute.path;
+
+    if (children) {
+      console.log("children:", children);
+      children.map(function (c) {
+        // extend path by childs path
+        if (c.path.length) {
+          // console.log('c.path: ', c.path)
+          // console.log('path: ', path)
+          c.path = "".concat(path, "/").concat(c.path); // console.log('c.path: ', c.path)
+        }
+      });
+      console.log("children:", children);
+    } // Loop through all configured languages
+
+
     options.langs.forEach(function (lang) {
       // Get values from baseRoute
       var component = baseRoute.component;
@@ -37,14 +53,24 @@ function generateLocalizedRoutes() {
           children = baseRoute.children; // Recursively generate routes for all children if there are any
 
       if (children) {
-        children = generateLocalizedRoutes(children, [lang]);
+        // forach choödrem child = vbaseroute + chlld
+        children = generateLocalizedRoutes({
+          baseRoutes: children,
+          langs: [lang],
+          defaultLang: options.defaultLang,
+          routesAliases: options.routesAliases
+        });
       } // Handle route aliases
 
 
       if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".").concat(lang.slug))) {
         path = options.routesAliases[name][lang.slug];
-      } // Prefix path with lang slug if not default lang
+      }
 
+      console.log('🐦- - - - - ------------ - - - -');
+      console.log('lang.lang: ', lang.lang);
+      console.log('options.defaultLang: ', options.defaultLang);
+      console.log('- - - - - ------------ - - - -🚀'); // Prefix path with lang slug if not default lang
 
       if (lang.lang !== options.defaultLang) {
         // Add leading / if needed (ie. children routes)
