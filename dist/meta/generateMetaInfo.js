@@ -76,7 +76,7 @@ function generateMetaInfo(options, post, locale, route) {
       property: 'og:type',
       content: 'website'
     }, {
-      hid: 'og:site-name',
+      hid: 'og:site_name',
       property: 'og:site_name',
       content: ogSiteName
     }, {
