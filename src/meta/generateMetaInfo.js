@@ -44,7 +44,7 @@ export default function generateMetaInfo (options, post, locale, route) {
       { hid: 'og:description', property: 'og:description', content: ogDescription },
       { hid: 'og:url', property: 'og:url', content: canonicalUrl },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:site-name', property: 'og:site_name', content: ogSiteName },
+      { hid: 'og:site_name', property: 'og:site_name', content: ogSiteName },
       { hid: 'og:locale', property: 'og:locale', content: locale },
       { hid: 'twitter:title', name: 'twitter:title', content: ogTitle },
       { hid: 'twitter:description', name: 'twitter:description', content: ogDescription }
