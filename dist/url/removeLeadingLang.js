@@ -16,5 +16,5 @@ exports.default = removeLeadingLang;
  * // -> 'myslug/'
  */
 function removeLeadingLang(string) {
-  return string.startsWith('en/') || string.startsWith('fr/') ? string.substr(3) : string;
+  return string.startsWith('en/') || string.startsWith('fr/') || string.startsWith('it/') ? string.substr(3) : string;
 }
