@@ -1,8 +1,6 @@
 /**
  * Remove leading language locale.
  *
- * TODO: Make this more generic. Use regex to remove leading lang locale.
- *
  * @example
  *
  * removeLeadingLang('en/myslug/')
