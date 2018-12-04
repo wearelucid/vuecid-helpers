@@ -1,4 +1,3 @@
-import generateMetaDescription from './generateMetaDescription'
 import generateMetaImage from './generateMetaImage'
 import generateHreflangs from './generateHreflangs'
 import removeTrailingSlash from '../url/removeTrailingSlash'
@@ -47,21 +46,7 @@ export default function generateMetaInfo ({
   const description = post.meta_description ? post.meta_description : _siteSettings.meta_description_default
 
   //  Canonical: Construct canonical and ensure we don't mess up the slashes
-  const canonicalUrl = `${verifyTrailingSlash(_siteSettings.website_url)}${removeLeadingSlash(removeTrailingSlash(path))}`
-
-  // meta_facebook_admins_id
-  // meta_publisher_twitter_handle
-  // meta_site_title
-  // meta_website_url
-
-  console.log('siteSettings: ', siteSettings)
-  console.log('_siteSettings: ', _siteSettings)
-  // console.log('_siteSettings: ', _siteSettings)
-  // console.log('post: ', post)
-  // console.log('path: ', path)
-  // console.log('locale: ', locale)
-  console.log('post: ', post)
-
+  const canonicalUrl = `${verifyTrailingSlash(_siteSettings.meta_website_url)}${removeLeadingSlash(removeTrailingSlash(path))}`
 
   const metaInfo = {
     title: titlePattern ? `${title} ${titlePatternSeparator} ${siteName}` : siteName,
@@ -78,98 +63,22 @@ export default function generateMetaInfo ({
       { hid: 'og:site_name', property: 'og:site_name', content: siteName },
       { hid: 'og:locale', property: 'og:locale', content: locale },
       { hid: 'twitter:title', name: 'twitter:title', content: title },
-      { hid: 'twitter:description', name: 'twitter:description', content: description }
+      { hid: 'twitter:description', name: 'twitter:description', content: description },
+      { hid: 'twitter:site', name: 'twitter:site', content: _siteSettings.meta_publisher_twitter_handle },
+      { hid: 'fb:admins', property: 'fb:admins', content: _siteSettings.meta_facebook_admins_id },
+      // Generate meta image:
+      ...generateMetaImage({ siteSettings: _siteSettings, post: post })
     ],
-  //   link: [
-  //     { rel: 'canonical', href: canonicalUrl }
-  //     // { rel:'alternate', hreflang='en', href='#'}
-  //   ].concat(hreflangs) // merge with hreflangs
-  // }
-  //
-  // if (twitterHandle) {
-  //   metaInfo.meta.push(
-  //     { name: 'twitter:site', content: twitterHandle }
-  //   )
-  // }
-  //
-  // if (image) {
-  //   metaInfo.meta.push(
-  //     { hid: 'og:image', property: 'og:image', content: image },
-  //     { hid: 'twitter-image', name: 'twitter:image', content: image },
-  //     // Make sure your backend crops the og image with this dimensions
-  //     { hid: 'og:image:width', name: 'og:image:width', content: '1280' },
-  //     { hid: 'og:image:height', name: 'og:image:height', content: '720' },
-  //     { hid: 'twitter-card', name: 'twitter:card', content: 'summary_large_image' }
-  //   )
+    link: [
+      { rel: 'canonical', href: canonicalUrl },
+      // Generate hreflangs from post:
+      ...generateHreflangs(post)
+    ]
   }
-
-
-
-
-  // const websiteUrl = siteSettings.global.website_url || 'website.url'
-  // const siteName = siteSettings.global.site_title || ''
-  // console.log('siteName: ', siteName)
-  //
-  // /* TODO: Use global site settings for everything if there are no localized settings */
-  // const ogSiteName = siteSettings.localized.og_site_name ? siteSettings.localized.og_site_name : siteName
-  //
-  // const title = generateMetaTitle(siteSettings, post)
-  // const description = generateMetaDescription(siteSettings, post)
-  // const ogTitle = post && post.og_enabled && post.og_title ? post.og_title : title
-  // const ogDescription = post && post.og_enabled && post.og_description ? post.og_description : description
-  // const twitterHandle = siteSettings.site_twitter_handle || false
-  // const image = generateMetaImage(siteSettings, post)
-  // const hreflangs = generateHreflangs(post, websiteUrl)
-  // const canonicalUrl = websiteUrl + removeLeadingSlash(removeTrailingSlash(path))
-
-  // const metaInfo = {
-  //   title: titlePattern ? `${title} ${titlePatternSeparator} ${siteName}` : siteName,
-  //   htmlAttrs: {
-  //     lang: locale
-  //   },
-  //   meta: [
-  //     { name: 'application-name', content: siteName },
-  //     { hid: 'description', name: 'description', content: description },
-  //     { hid: 'og:locale', rel: 'og:locale', content: locale },
-  //     { hid: 'og:title', property: 'og:title', content: ogTitle },
-  //     { hid: 'og:description', property: 'og:description', content: ogDescription },
-  //     { hid: 'og:url', property: 'og:url', content: canonicalUrl },
-  //     { hid: 'og:type', property: 'og:type', content: 'website' },
-  //     { hid: 'og:site_name', property: 'og:site_name', content: ogSiteName },
-  //     { hid: 'og:locale', property: 'og:locale', content: locale },
-  //     { hid: 'twitter:title', name: 'twitter:title', content: ogTitle },
-  //     { hid: 'twitter:description', name: 'twitter:description', content: ogDescription }
-  //   ],
-  //   link: [
-  //     { rel: 'canonical', href: canonicalUrl }
-  //     // { rel:'alternate', hreflang='en', href='#'}
-  //   ].concat(hreflangs) // merge with hreflangs
-  // }
-  //
-  // if (twitterHandle) {
-  //   metaInfo.meta.push(
-  //     { name: 'twitter:site', content: twitterHandle }
-  //   )
-  // }
-  //
-  // if (image) {
-  //   metaInfo.meta.push(
-  //     { hid: 'og:image', property: 'og:image', content: image },
-  //     { hid: 'twitter-image', name: 'twitter:image', content: image },
-  //     // Make sure your backend crops the og image with this dimensions
-  //     { hid: 'og:image:width', name: 'og:image:width', content: '1280' },
-  //     { hid: 'og:image:height', name: 'og:image:height', content: '720' },
-  //     { hid: 'twitter-card', name: 'twitter:card', content: 'summary_large_image' }
-  //   )
-  // }
-  //
-  // console.log('hoi meta')
-  //
-  // return metaInfo
 
   console.table(metaInfo)
   console.table(metaInfo.meta)
+  console.table(metaInfo.link)
 
   return metaInfo
-
 }
