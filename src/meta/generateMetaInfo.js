@@ -18,6 +18,7 @@ export default function generateMetaInfo ({
   post = {},
   path = '',
   locale = '',
+  debug = false,
   titlePattern = true,
   titlePatternSeparator = '|'
 } = {}) {
@@ -76,9 +77,12 @@ export default function generateMetaInfo ({
     ]
   }
 
-  console.table(metaInfo)
-  console.table(metaInfo.meta)
-  console.table(metaInfo.link)
+  // Log output
+  if (debug) {
+    console.table(metaInfo)
+    console.table(metaInfo.meta)
+    console.table(metaInfo.link)
+  }
 
   return metaInfo
 }
