@@ -1,6 +1,7 @@
 import removeHomeSlug from '../url/removeHomeSlug'
+import verifyTrailingSlash from '../url/verifyTrailingSlash'
 
-export default function generateHreflangs (post, url) {
+export default function generateHreflangs (post) {
   const hreflangs = []
 
   // Only generate alternates if there is more than one language
@@ -9,7 +10,7 @@ export default function generateHreflangs (post, url) {
       const hreflang = {
         rel: 'alternate',
         hreflang: t.lang,
-        href: removeHomeSlug(t.permalink)
+        href: verifyTrailingSlash(removeHomeSlug(t.permalink))
       }
       hreflangs.push(hreflang)
     })
