@@ -1,4 +1,4 @@
-export default function generateMetaImage ({ siteSettings = {}, post = {} } = {}) {
+export default function generateMetaImageInfo ({ siteSettings = {}, post = {} } = {}) {
 
   // Throw if there is no default og image in the correct size
   if(!siteSettings || !siteSettings.meta_og_image_default || !siteSettings.meta_og_image_default.sizes['social-share-large']) {

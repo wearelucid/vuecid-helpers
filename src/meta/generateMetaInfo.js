@@ -1,4 +1,4 @@
-import generateMetaImage from './generateMetaImage'
+import generateMetaImageInfo from './generateMetaImageInfo'
 import generateHreflangs from './generateHreflangs'
 import removeTrailingSlash from '../url/removeTrailingSlash'
 import removeLeadingSlash from '../url/removeLeadingSlash'
@@ -20,7 +20,7 @@ export default function generateMetaInfo ({
   locale = '',
   debug = false,
   titlePattern = true,
-  titlePatternSeparator = '|'
+  titlePatternSeparator = ' | '
 } = {}) {
 
   // Check if we have all required data
@@ -50,7 +50,7 @@ export default function generateMetaInfo ({
   const canonicalUrl = `${verifyTrailingSlash(_siteSettings.meta_website_url)}${removeLeadingSlash(removeTrailingSlash(path))}`
 
   const metaInfo = {
-    title: titlePattern ? `${title} ${titlePatternSeparator} ${siteName}` : siteName,
+    title: titlePattern ? `${title}${titlePatternSeparator}${siteName}` : siteName,
     htmlAttrs: {
       lang: locale
     },
@@ -68,7 +68,7 @@ export default function generateMetaInfo ({
       { hid: 'twitter:site', name: 'twitter:site', content: _siteSettings.meta_publisher_twitter_handle },
       { hid: 'fb:admins', property: 'fb:admins', content: _siteSettings.meta_facebook_admins_id },
       // Generate meta image:
-      ...generateMetaImage({ siteSettings: _siteSettings, post: post })
+      ...generateMetaImageInfo({ siteSettings: _siteSettings, post: post })
     ],
     link: [
       { rel: 'canonical', href: canonicalUrl },

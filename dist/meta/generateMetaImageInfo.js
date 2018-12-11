@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = generateMetaImage;
+exports.default = generateMetaImageInfo;
 
-function generateMetaImage() {
+function generateMetaImageInfo() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$siteSettings = _ref.siteSettings,
       siteSettings = _ref$siteSettings === void 0 ? {} : _ref$siteSettings,

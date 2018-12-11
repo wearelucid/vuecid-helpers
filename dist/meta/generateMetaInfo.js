@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = generateMetaInfo;
 
-var _generateMetaImage = _interopRequireDefault(require("./generateMetaImage"));
+var _generateMetaImageInfo = _interopRequireDefault(require("./generateMetaImageInfo"));
 
 var _generateHreflangs = _interopRequireDefault(require("./generateHreflangs"));
 
@@ -75,7 +75,7 @@ function generateMetaInfo() {
 
   var canonicalUrl = "".concat((0, _verifyTrailingSlash.default)(_siteSettings.meta_website_url)).concat((0, _removeLeadingSlash.default)((0, _removeTrailingSlash.default)(path)));
   var metaInfo = {
-    title: titlePattern ? "".concat(title, " ").concat(titlePatternSeparator, " ").concat(siteName) : siteName,
+    title: titlePattern ? "".concat(title).concat(titlePatternSeparator).concat(siteName) : siteName,
     htmlAttrs: {
       lang: locale
     },
@@ -126,7 +126,7 @@ function generateMetaInfo() {
       hid: 'fb:admins',
       property: 'fb:admins',
       content: _siteSettings.meta_facebook_admins_id
-    }].concat(_toConsumableArray((0, _generateMetaImage.default)({
+    }].concat(_toConsumableArray((0, _generateMetaImageInfo.default)({
       siteSettings: _siteSettings,
       post: post
     }))),
