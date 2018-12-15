@@ -52,7 +52,7 @@ function generateMetaInfo() {
       _ref$titlePattern = _ref.titlePattern,
       titlePattern = _ref$titlePattern === void 0 ? true : _ref$titlePattern,
       _ref$titlePatternSepa = _ref.titlePatternSeparator,
-      titlePatternSeparator = _ref$titlePatternSepa === void 0 ? '|' : _ref$titlePatternSepa;
+      titlePatternSeparator = _ref$titlePatternSepa === void 0 ? ' | ' : _ref$titlePatternSepa;
 
   // Check if we have all required data
   if (!siteSettings || !siteSettings.global || !siteSettings.global.meta_global_site_settings) throw new Error('siteSettings and siteSettings.global.meta_global_site_settings are required');
@@ -73,7 +73,7 @@ function generateMetaInfo() {
 
   var description = post.meta_description ? post.meta_description : _siteSettings.meta_description_default; //  Canonical: Construct canonical and ensure we don't mess up the slashes
 
-  var canonicalUrl = "".concat((0, _verifyTrailingSlash.default)(_siteSettings.meta_website_url)).concat((0, _removeLeadingSlash.default)((0, _removeTrailingSlash.default)(path)));
+  var canonicalUrl = (0, _removeTrailingSlash.default)("".concat((0, _verifyTrailingSlash.default)(_siteSettings.meta_website_url)).concat((0, _removeLeadingSlash.default)(path)));
   var metaInfo = {
     title: titlePattern ? "".concat(title).concat(titlePatternSeparator).concat(siteName) : siteName,
     htmlAttrs: {

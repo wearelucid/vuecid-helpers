@@ -47,7 +47,7 @@ export default function generateMetaInfo ({
   const description = post.meta_description ? post.meta_description : _siteSettings.meta_description_default
 
   //  Canonical: Construct canonical and ensure we don't mess up the slashes
-  const canonicalUrl = `${verifyTrailingSlash(_siteSettings.meta_website_url)}${removeLeadingSlash(removeTrailingSlash(path))}`
+  const canonicalUrl = removeTrailingSlash(`${verifyTrailingSlash(_siteSettings.meta_website_url)}${removeLeadingSlash(path)}`)
 
   const metaInfo = {
     title: titlePattern ? `${title}${titlePatternSeparator}${siteName}` : siteName,
