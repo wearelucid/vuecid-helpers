@@ -9,6 +9,7 @@ import normalizeWordpress from './data-transformation/normalizeWordpress'
 import removeFieldsFromPost from './data-transformation/removeFieldsFromPost'
 import decodeTitle from './data-transformation/decodeTitle'
 import reduceBundle from './data-transformation/reduceBundle'
+import removeErrorPrefixFromPolylangObjects from './data-transformation/removeErrorPrefixFromPolylangObjects'
 
 // Meta data utilities
 import generateMetaInfo from './meta/generateMetaInfo'
@@ -49,6 +50,7 @@ export {
   removeFieldsFromPost,
   decodeTitle,
   reduceBundle,
+  removeErrorPrefixFromPolylangObjects,
 
   // Meta data utilities
   generateMetaInfo,

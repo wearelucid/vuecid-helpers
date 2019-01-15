@@ -30,7 +30,8 @@ function generateRoutesFromData() {
     postTypes: {},
     dataPath: '',
     bundle: '',
-    homeSlug: 'home'
+    homeSlug: 'home',
+    errorPrefix: 'error-'
   };
 
   // Get an array of post types, something like [ 'pages', 'posts' ]
@@ -45,12 +46,15 @@ function generateRoutesFromData() {
 
   var langRoutes = _postTypes.reduce(function (acc, type) {
     return _toConsumableArray(acc.map(function (l) {
-      // Kick out all the pages containing the home slug
+      var f = l // Kick out all the pages containing the home slug
       // This could also delete a page that contains a string linke '…/home…'
       // maybe a page with the permalink /pages/something/home-sweet-home
       // Sadly this step is necessary since we can not redirect() with our middleware during generate
-      var f = l.filter(function (s) {
+      .filter(function (s) {
         return !s.includes("/".concat(options.homeSlug));
+      }) // Kick out error pages
+      .filter(function (s) {
+        return !s.includes("/".concat(options.errorPrefix));
       });
       return f.map(function (p) {
         return (0, _verifyTrailingSlash.default)(p);
