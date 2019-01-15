@@ -34,11 +34,14 @@ export default function generateRoutesFromData(options = {
 
           // Kick out error pages
           .filter(s => !s.includes(`/${options.errorPrefix}`))
-        return f.map(p => verifyTrailingSlash(p)) // Verify trailing slash so we don't get duplicate route generation
+
+        // Verify trailing slash so we don't get duplicate route generation
+        return f.map(p => verifyTrailingSlash(p))
       }),
       // All the posts
       ...localizedJson.map(l => {
-        return l[type].map(p => verifyTrailingSlash(getPathFromUrl(p.link))) // Verify trailing slash so we don't get duplicate route generation
+        // Verify trailing slash so we don't get duplicate route generation
+        return l[type].map(p => verifyTrailingSlash(getPathFromUrl(p.link)))
       })
     ]
   }, []) // acc

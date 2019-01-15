@@ -55,14 +55,16 @@ function generateRoutesFromData() {
       }) // Kick out error pages
       .filter(function (s) {
         return !s.includes("/".concat(options.errorPrefix));
-      });
+      }); // Verify trailing slash so we don't get duplicate route generation
+
       return f.map(function (p) {
         return (0, _verifyTrailingSlash.default)(p);
-      }); // Verify trailing slash so we don't get duplicate route generation
+      });
     })).concat(_toConsumableArray(localizedJson.map(function (l) {
+      // Verify trailing slash so we don't get duplicate route generation
       return l[type].map(function (p) {
         return (0, _verifyTrailingSlash.default)((0, _getPathFromUrl.default)(p.link));
-      }); // Verify trailing slash so we don't get duplicate route generation
+      });
     })));
   }, []); // acc
   // Use root '/' for default lang
