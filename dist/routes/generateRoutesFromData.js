@@ -30,7 +30,8 @@ function generateRoutesFromData() {
     postTypes: {},
     dataPath: '',
     bundle: '',
-    homeSlug: 'home'
+    homeSlug: 'home',
+    errorPrefix: 'error-'
   };
 
   // Get an array of post types, something like [ 'pages', 'posts' ]
@@ -44,21 +45,26 @@ function generateRoutesFromData() {
   }); // Get path from url for each post type from locaized JSON and make an array :-)
 
   var langRoutes = _postTypes.reduce(function (acc, type) {
-    return _toConsumableArray(acc.map(function (l) {
-      // Kick out all the pages containing the home slug
+    return [].concat(_toConsumableArray(acc.map(function (l) {
+      var f = l // Kick out all the pages containing the home slug
       // This could also delete a page that contains a string linke '…/home…'
       // maybe a page with the permalink /pages/something/home-sweet-home
       // Sadly this step is necessary since we can not redirect() with our middleware during generate
-      var f = l.filter(function (s) {
+      .filter(function (s) {
         return !s.includes("/".concat(options.homeSlug));
-      });
+      }) // Kick out error pages
+      .filter(function (s) {
+        return !s.includes("/".concat(options.errorPrefix));
+      }); // Verify trailing slash so we don't get duplicate route generation
+
       return f.map(function (p) {
         return (0, _verifyTrailingSlash.default)(p);
-      }); // Verify trailing slash so we don't get duplicate route generation
-    })).concat(_toConsumableArray(localizedJson.map(function (l) {
+      });
+    })), _toConsumableArray(localizedJson.map(function (l) {
+      // Verify trailing slash so we don't get duplicate route generation
       return l[type].map(function (p) {
         return (0, _verifyTrailingSlash.default)((0, _getPathFromUrl.default)(p.link));
-      }); // Verify trailing slash so we don't get duplicate route generation
+      });
     })));
   }, []); // acc
   // Use root '/' for default lang
@@ -67,7 +73,7 @@ function generateRoutesFromData() {
   var langRoutesRoot = options.langs.map(function (l) {
     return l.default ? '/' : "/".concat(l.slug, "/");
   });
-  return _toConsumableArray(langRoutesRoot).concat(_toConsumableArray(langRoutes.reduce(function (acc, cur) {
-    return _toConsumableArray(acc).concat(_toConsumableArray(cur));
+  return [].concat(_toConsumableArray(langRoutesRoot), _toConsumableArray(langRoutes.reduce(function (acc, cur) {
+    return [].concat(_toConsumableArray(acc), _toConsumableArray(cur));
   })));
 }

@@ -11,7 +11,8 @@ export default function generateRoutesFromData(options = {
   postTypes: {},
   dataPath: '',
   bundle: '',
-  homeSlug: 'home'
+  homeSlug: 'home',
+  errorPrefix: 'error-'
 }) {
   // Get an array of post types, something like [ 'pages', 'posts' ]
   const _postTypes = options.postTypes.map(pt => pt.type)
@@ -24,16 +25,23 @@ export default function generateRoutesFromData(options = {
     return [
       // All the pages
       ...acc.map(l => {
-        // Kick out all the pages containing the home slug
-        // This could also delete a page that contains a string linke '…/home…'
-        // maybe a page with the permalink /pages/something/home-sweet-home
-        // Sadly this step is necessary since we can not redirect() with our middleware during generate
-        let f = l.filter(s => !s.includes(`/${options.homeSlug}`))
-        return f.map(p => verifyTrailingSlash(p)) // Verify trailing slash so we don't get duplicate route generation
+        const f = l
+          // Kick out all the pages containing the home slug
+          // This could also delete a page that contains a string linke '…/home…'
+          // maybe a page with the permalink /pages/something/home-sweet-home
+          // Sadly this step is necessary since we can not redirect() with our middleware during generate
+          .filter(s => !s.includes(`/${options.homeSlug}`))
+
+          // Kick out error pages
+          .filter(s => !s.includes(`/${options.errorPrefix}`))
+
+        // Verify trailing slash so we don't get duplicate route generation
+        return f.map(p => verifyTrailingSlash(p))
       }),
       // All the posts
       ...localizedJson.map(l => {
-        return l[type].map(p => verifyTrailingSlash(getPathFromUrl(p.link))) // Verify trailing slash so we don't get duplicate route generation
+        // Verify trailing slash so we don't get duplicate route generation
+        return l[type].map(p => verifyTrailingSlash(getPathFromUrl(p.link)))
       })
     ]
   }, []) // acc

@@ -51,6 +51,12 @@ Object.defineProperty(exports, "reduceBundle", {
     return _reduceBundle.default;
   }
 });
+Object.defineProperty(exports, "removeErrorPrefixFromPolylangObjects", {
+  enumerable: true,
+  get: function get() {
+    return _removeErrorPrefixFromPolylangObjects.default;
+  }
+});
 Object.defineProperty(exports, "generateMetaInfo", {
   enumerable: true,
   get: function get() {
@@ -181,6 +187,8 @@ var _removeFieldsFromPost = _interopRequireDefault(require("./data-transformatio
 var _decodeTitle = _interopRequireDefault(require("./data-transformation/decodeTitle"));
 
 var _reduceBundle = _interopRequireDefault(require("./data-transformation/reduceBundle"));
+
+var _removeErrorPrefixFromPolylangObjects = _interopRequireDefault(require("./data-transformation/removeErrorPrefixFromPolylangObjects"));
 
 var _generateMetaInfo = _interopRequireDefault(require("./meta/generateMetaInfo"));
 

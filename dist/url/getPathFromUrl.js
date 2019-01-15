@@ -11,6 +11,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * Regex to get the path from url. Makes sure that there is a leading slash.
+ * https://regex101.com/r/uMOB5V/2/
  *
  * @example
  *
@@ -18,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * // -> '/en/myslug/'
  */
 function getPathFromUrl(string) {
-  var regex = /(http[s]?:\/\/)?([^/\s]+\/)(.*)/;
+  var regex = /(http[s]?:\/\/)?([^\/\s]+\/)(.*)/;
   var str = string;
   var subst = "$3";
   var result = str.replace(regex, subst);
