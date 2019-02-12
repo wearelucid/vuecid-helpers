@@ -29,15 +29,24 @@ function generateLocalizedRoutes() {
   var localizedRoutes = []; // Loop through all generated routes
 
   options.baseRoutes.forEach(function (baseRoute) {
-    var children = baseRoute.children,
-        path = baseRoute.path; // Loop through all configured languages
-
+    // Loop through all configured languages
     options.langs.forEach(function (lang) {
       // Get values from baseRoute
       var component = baseRoute.component;
       var path = baseRoute.path,
-          name = baseRoute.name,
-          children = baseRoute.children; // Recursively generate routes for all children if there are any
+          children = baseRoute.children;
+      var name = baseRoute.name;
+
+      var meta = _objectSpread({}, baseRoute.meta, {
+        isInBundle: true,
+        postType: null // Throw error if no locales provided
+
+      });
+
+      if (options.routesAliases[name] && !options.routesAliases[name].locales) {
+        throw new Error('Route aliases have to be nested in a locales object');
+      } // Recursively generate routes for all children if there are any
+
 
       if (children) {
         children = generateLocalizedRoutes({
@@ -47,11 +56,21 @@ function generateLocalizedRoutes() {
           routesAliases: options.routesAliases,
           isChild: true
         });
-      } // Handle route aliases
+      } // Handle route path aliases
 
 
-      if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".").concat(lang.slug))) {
-        path = options.routesAliases[name][lang.slug];
+      if (options.routesAliases[name] && (0, _lodash.default)(options.routesAliases, "".concat(name, ".locales.").concat(lang.slug))) {
+        path = options.routesAliases[name].locales[lang.slug];
+      } // Check if in bundle
+
+
+      if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".isInBundle"))) {
+        meta.isInBundle = options.routesAliases[name].isInBundle;
+      } // Check for post type
+
+
+      if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".postType"))) {
+        meta.postType = options.routesAliases[name].postType;
       } // Prefix path with lang slug if not default lang
       // But don't do it for children
 
@@ -73,8 +92,10 @@ function generateLocalizedRoutes() {
         name: "".concat(name, "-").concat(lang.slug)
       } : {}, children ? {
         children: children
-      } : {}); // Push route to array
+      } : {}, {
+        meta: _objectSpread({}, meta) // Push route to array
 
+      });
 
       localizedRoutes.push(route);
     });

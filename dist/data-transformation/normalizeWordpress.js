@@ -22,9 +22,9 @@ function _normalizeWordpressPost(post) {
   if (post === null || _typeof(post) !== 'object') {
     return post;
   } else {
-    post.title = post.title.rendered;
-    post.content = post.content.rendered;
-    post.excerpt = post.excerpt ? post.excerpt.rendered : null;
+    post.title = post.title && post.title.rendered ? post.title.rendered : '';
+    post.content = post.content && post.content.rendered ? post.content.rendered : '';
+    post.excerpt = post.excerpt ? post.excerpt.rendered : '';
     return post;
   }
 }
