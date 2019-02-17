@@ -31,9 +31,12 @@ $ yarn docs
 
 * * *
 
-_For WordPress specific helpers, see /src/wp/README.md_
-
 ## Docs
+
+- [Main helpers](#main)
+- [WordPress specific helpers](#wordpress)
+
+* * *
 
 ### Main
 
