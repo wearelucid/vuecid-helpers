@@ -9,7 +9,7 @@ import removeTrailingSlash from './removeTrailingSlash'
  *
  */
 
-export default function removeHomeSlug (string, homeSlug = 'home') {
+export default function removeHomeSlug(string, homeSlug = 'home') {
   if (typeof string === 'string' || string instanceof String) {
     let s = string !== '/' ? removeTrailingSlash(string) : '/'
     if (s.endsWith(homeSlug)) {
@@ -17,6 +17,7 @@ export default function removeHomeSlug (string, homeSlug = 'home') {
     }
     return s
   } else {
+    // eslint-disable-next-line no-console
     console.warn('removeHomeSlug(): Please give me a string!')
     return string
   }

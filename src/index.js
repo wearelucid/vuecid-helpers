@@ -1,26 +1,23 @@
-// API
-import getData from './api/getData'
-import getPreviewData from './api/getPreviewData'
+/**
+ * General helpers
+ */
+
+// Misc utilities
+import cleanString from './misc/cleanString'
+import decodeHtmlEntity from './misc/decodeHtmlEntity'
 
 // Data transformations
 import applyToOneOrMany from './data-transformation/applyToOneOrMany'
-import flattenACF from './data-transformation/flattenACF'
-import normalizeWordpress from './data-transformation/normalizeWordpress'
-import removeFieldsFromPost from './data-transformation/removeFieldsFromPost'
-import decodeTitle from './data-transformation/decodeTitle'
-import reduceBundle from './data-transformation/reduceBundle'
-import removeErrorPrefixFromPolylangObjects from './data-transformation/removeErrorPrefixFromPolylangObjects'
 
-// Meta data utilities
-import generateMetaInfo from './meta/generateMetaInfo'
+// Routes utilities
+import generateLocalizedRoutes from './routes/generateLocalizedRoutes'
+import generateRoutesFromData from './routes/generateRoutesFromData'
 
 // Url utilities
 import checkAndGetHomeSlug from './url/checkAndGetHomeSlug'
 import checkIfSlugIsHome from './url/checkIfSlugIsHome'
-import checkIfWordPressPreview from './url/checkIfWordPressPreview'
 import checkIsHome from './url/checkIsHome'
 import cleanSlug from './url/cleanSlug'
-import getPageOrPostLinkFromLang from './url/getPageOrPostLinkFromLang'
 import getPathFromUrl from './url/getPathFromUrl'
 import removeHomeSlug from './url/removeHomeSlug'
 import removeLeadingLang from './url/removeLeadingLang'
@@ -29,53 +26,25 @@ import removeTrailingSlash from './url/removeTrailingSlash'
 import verifyLeadingSlash from './url/verifyLeadingSlash'
 import verifyTrailingSlash from './url/verifyTrailingSlash'
 
-// Misc utilities
-import cleanString from './misc/cleanString'
-import decodeHtmlEntity from './misc/decodeHtmlEntity'
-import findPostInArray from './misc/findPostInArray'
-
-// Routes utilities
-import generateLocalizedRoutes from './routes/generateLocalizedRoutes'
-import generateRoutesFromData from './routes/generateRoutesFromData'
-
 export {
-  // Data transformations
-  getData,
-  getPreviewData,
-
+  // Misc utilities
+  cleanString,
+  decodeHtmlEntity,
   // Data transformations
   applyToOneOrMany,
-  flattenACF,
-  normalizeWordpress,
-  removeFieldsFromPost,
-  decodeTitle,
-  reduceBundle,
-  removeErrorPrefixFromPolylangObjects,
-
-  // Meta data utilities
-  generateMetaInfo,
-
+  // Routes utilities
+  generateLocalizedRoutes,
+  generateRoutesFromData,
   // Url utilities
   checkAndGetHomeSlug,
   checkIfSlugIsHome,
-  checkIfWordPressPreview,
   checkIsHome,
   cleanSlug,
-  getPageOrPostLinkFromLang,
   getPathFromUrl,
   removeHomeSlug,
   removeLeadingLang,
   removeLeadingSlash,
   removeTrailingSlash,
   verifyLeadingSlash,
-  verifyTrailingSlash,
-
-  // Misc utilities
-  cleanString,
-  decodeHtmlEntity,
-  findPostInArray,
-
-  // Routes utilities
-  generateLocalizedRoutes,
-  generateRoutesFromData
+  verifyTrailingSlash
 }

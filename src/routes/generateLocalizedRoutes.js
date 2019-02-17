@@ -2,8 +2,14 @@ import _has from 'lodash.has'
 
 /**
  * Generate localized routes using Nuxt's generated routes and i18n config
- * @param  {Object} options Options
- * @return {Array}          Localized routes to be used in Nuxt config
+ *
+ * @param  {Object} options - The options object to pass in
+ * @param {Array} options.baseRoutes
+ * @param {string} options.defaultLang
+ * @param {Array} options.langs
+ * @param {Object} options.routesAliases
+ * @param {Boolean} [options.isChild]
+ * @return {Array} Localized routes to be used in Nuxt config
  */
 
 export default function generateLocalizedRoutes(
@@ -63,10 +69,8 @@ export default function generateLocalizedRoutes(
       // Prefix path with lang slug if not default lang
       // But don't do it for children
       if (lang.lang !== options.defaultLang && !options.isChild) {
-        // Add leading / if needed (ie. children routes)
-        if (path.match(/^\//) === null) {
-          path = `/${path}`
-        }
+        // Add leading slash if needed (ie. children routes)
+        if (path.match(/^\//) === null) path = `/${path}`
         path = `/${lang.slug}${path}`
       }
 

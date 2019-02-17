@@ -1,5 +1,5 @@
-import applyToOneOrMany from './applyToOneOrMany'
-import decodeHtmlEntity from '../misc/decodeHtmlEntity'
+import decodeHtmlEntity from '../../misc/decodeHtmlEntity'
+import applyToOneOrMany from '../../data-transformation/applyToOneOrMany'
 
 /**
  * Data transformation to decode any unicode characters in the title property.

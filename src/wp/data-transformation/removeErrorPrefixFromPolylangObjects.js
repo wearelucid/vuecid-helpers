@@ -1,17 +1,21 @@
-import applyToOneOrMany from './applyToOneOrMany'
+import applyToOneOrMany from '../../data-transformation/applyToOneOrMany'
 
 /**
  * Create reduced WordPress post object(s). This is good to generate routes or sitemaps.
  */
 
-export default function removeErrorPrefixFromPolylangObjects (data) {
+export default function removeErrorPrefixFromPolylangObjects(data) {
   return applyToOneOrMany(_removeErrorPrefixFromPolylangObjects, data)
 }
 
-function _removeErrorPrefixFromPolylangObjects (data) {
-  let reduced = data
+function _removeErrorPrefixFromPolylangObjects(data) {
+  const reduced = data
   if (reduced.slug.includes('error-')) {
-    if (reduced.polylang && reduced.polylang.translations && reduced.polylang.translations.length) {
+    if (
+      reduced.polylang &&
+      reduced.polylang.translations &&
+      reduced.polylang.translations.length
+    ) {
       reduced.polylang.translations.map(p => {
         p.slug = p.slug.replace('error-', '')
         p.uri = p.uri.replace('error-', '')

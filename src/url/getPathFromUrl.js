@@ -10,7 +10,7 @@ import verifyLeadingSlash from './verifyLeadingSlash'
  * // -> '/en/myslug/'
  */
 
-export default function getPathFromUrl (string) {
+export default function getPathFromUrl(string) {
   const regex = /(http[s]?:\/\/)?([^\/\s]+\/)(.*)/
   const str = string
   const subst = `$3`
