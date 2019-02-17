@@ -5,7 +5,7 @@ import _kebabCase from 'lodash.kebabcase'
 /**
  * Clean a string: deburr, lowercase and kebabcase it. This is good to generate ids.
  *
- * @param  {string} str A dirty string
+ * @param  {string} str - A dirty string
  * @return {string} A clean string
  *
  * @example

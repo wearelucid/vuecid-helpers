@@ -5,12 +5,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = generateHreflangs;
 
-var _removeHomeSlug = _interopRequireDefault(require("../url/removeHomeSlug"));
+var _removeHomeSlug = _interopRequireDefault(require("../../url/removeHomeSlug"));
 
-var _verifyTrailingSlash = _interopRequireDefault(require("../url/verifyTrailingSlash"));
+var _verifyTrailingSlash = _interopRequireDefault(require("../../url/verifyTrailingSlash"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Generates hreflangs for all translations of a post.
+ *
+ * More about the [hreflang attribute](https://moz.com/learn/seo/hreflang-tag).
+ *
+ * @param {Object} post
+ * @param {Object} [post.polylang]
+ * @param {Array} [post.polylang.translations]
+ * @return {Array}
+ */
 function generateHreflangs(post) {
   var hreflangs = []; // Only generate alternates if there is more than one language
 

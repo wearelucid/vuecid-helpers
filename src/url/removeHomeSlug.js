@@ -3,22 +3,25 @@ import removeTrailingSlash from './removeTrailingSlash'
 /**
  * Remove 'home' from url.
  *
+ * @param  {string} str
+ * @return {string}
+ *
  * @example
  *
  * removeHomeSlug('https://www.mysite.com/home/') -> 'https://www.mysite.com/'
  *
  */
 
-export default function removeHomeSlug(string, homeSlug = 'home') {
-  if (typeof string === 'string' || string instanceof String) {
-    let s = string !== '/' ? removeTrailingSlash(string) : '/'
-    if (s.endsWith(homeSlug)) {
-      s = s.replace(homeSlug, '')
+export default function removeHomeSlug(str, homeSlug = 'home') {
+  if (typeof str === 'string' || str instanceof String) {
+    let _str = str !== '/' ? removeTrailingSlash(str) : '/'
+    if (_str.endsWith(homeSlug)) {
+      _str = _str.replace(homeSlug, '')
     }
-    return s
+    return _str
   } else {
     // eslint-disable-next-line no-console
     console.warn('removeHomeSlug(): Please give me a string!')
-    return string
+    return str
   }
 }

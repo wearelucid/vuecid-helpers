@@ -8,11 +8,14 @@ exports.default = verifyLeadingSlash;
 /**
  * Verify leading slash.
  *
+ * @param  {string} str
+ * @return {string}
+ *
  * @example
  *
  * verifyLeadingSlash('myslug')
  * // -> '/myslug'
  */
-function verifyLeadingSlash(string) {
-  return string.startsWith('/') ? string : "/".concat(string);
+function verifyLeadingSlash(str) {
+  return str.startsWith('/') ? str : "/".concat(str);
 }

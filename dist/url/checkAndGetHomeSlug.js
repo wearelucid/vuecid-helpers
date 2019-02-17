@@ -11,6 +11,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * Returns homeSlug if we are on home, e.g. '/en/' or '/en' or '/'
+ *
+ * @param  {string} path
+ * @param  {string} locale
+ * @param  {string} [homeSlug]
+ * @return {string} homeSlug or path
  */
 function checkAndGetHomeSlug(path, locale) {
   var homeSlug = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'home';

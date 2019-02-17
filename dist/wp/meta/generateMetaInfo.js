@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = generateMetaInfo;
 
-var _generateMetaImageInfo = _interopRequireDefault(require("./generateMetaImageInfo"));
+var _removeTrailingSlash = _interopRequireDefault(require("../../url/removeTrailingSlash"));
+
+var _removeLeadingSlash = _interopRequireDefault(require("../../url/removeLeadingSlash"));
+
+var _verifyTrailingSlash = _interopRequireDefault(require("../../url/verifyTrailingSlash"));
 
 var _generateHreflangs = _interopRequireDefault(require("./generateHreflangs"));
 
-var _removeTrailingSlash = _interopRequireDefault(require("../url/removeTrailingSlash"));
-
-var _removeLeadingSlash = _interopRequireDefault(require("../url/removeLeadingSlash"));
-
-var _verifyTrailingSlash = _interopRequireDefault(require("../url/verifyTrailingSlash"));
+var _generateMetaImageInfo = _interopRequireDefault(require("./generateMetaImageInfo"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

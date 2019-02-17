@@ -1,6 +1,17 @@
 import removeHomeSlug from '../../url/removeHomeSlug'
 import verifyTrailingSlash from '../../url/verifyTrailingSlash'
 
+/**
+ * Generates hreflangs for all translations of a post.
+ *
+ * More about the [hreflang attribute](https://moz.com/learn/seo/hreflang-tag).
+ *
+ * @param {Object} post
+ * @param {Object} [post.polylang]
+ * @param {Array} [post.polylang.translations]
+ * @return {Array}
+ */
+
 export default function generateHreflangs(post) {
   const hreflangs = []
 
