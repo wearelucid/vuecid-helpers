@@ -20,6 +20,7 @@
     "@babel/preset-env": "^7.1.0"
   },
   "scripts": {
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "docs": "documentation readme src/index.js --section=Main && documentation readme src/wp/index.js --section=WordPress"
   }
 }

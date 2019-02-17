@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = decodeTitle;
 
-var _applyToOneOrMany = _interopRequireDefault(require("./applyToOneOrMany"));
+var _decodeHtmlEntity = _interopRequireDefault(require("../../misc/decodeHtmlEntity"));
 
-var _decodeHtmlEntity = _interopRequireDefault(require("../misc/decodeHtmlEntity"));
+var _applyToOneOrMany = _interopRequireDefault(require("../../data-transformation/applyToOneOrMany"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

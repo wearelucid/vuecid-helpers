@@ -8,11 +8,14 @@ exports.default = removeLeadingSlash;
 /**
  * Remove leading slash.
  *
+ * @param  {string} str
+ * @return {string}
+ *
  * @example
  *
  * removeLeadingSlash('/myslug/')
  * // -> 'myslug/'
  */
-function removeLeadingSlash(string) {
-  return string.startsWith('/') ? string.substr(1) : string;
+function removeLeadingSlash(str) {
+  return str.startsWith('/') ? str.substr(1) : str;
 }

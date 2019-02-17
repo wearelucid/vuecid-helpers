@@ -15,8 +15,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * Generate localized routes using Nuxt's generated routes and i18n config
- * @param  {Object} options Options
- * @return {Array}          Localized routes to be used in Nuxt config
+ *
+ * @param  {Object} options - The options object to pass in
+ * @param {Array} options.baseRoutes
+ * @param {string} options.defaultLang
+ * @param {Array} options.langs
+ * @param {Object} options.routesAliases
+ * @param {Boolean} [options.isChild]
+ * @return {Array} Localized routes to be used in Nuxt config
  */
 function generateLocalizedRoutes() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
@@ -76,11 +82,8 @@ function generateLocalizedRoutes() {
 
 
       if (lang.lang !== options.defaultLang && !options.isChild) {
-        // Add leading / if needed (ie. children routes)
-        if (path.match(/^\//) === null) {
-          path = "/".concat(path);
-        }
-
+        // Add leading slash if needed (ie. children routes)
+        if (path.match(/^\//) === null) path = "/".concat(path);
         path = "/".concat(lang.slug).concat(path);
       } // Construct route object
 

@@ -1,5 +1,10 @@
 /**
  * Returns true if we are on home, e.g. '/en/' or '/en' or '/'
+ *
+ * @param  {string} path
+ * @param  {string} locale
+ * @return {Boolean}
+ *
  */
 
 export default function checkIsHome(path, locale) {

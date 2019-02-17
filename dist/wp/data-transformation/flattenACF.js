@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = flattenACF;
 
-var _applyToOneOrMany = _interopRequireDefault(require("./applyToOneOrMany"));
+var _applyToOneOrMany = _interopRequireDefault(require("../../data-transformation/applyToOneOrMany"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

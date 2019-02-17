@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = reduceBundle;
 
-var _applyToOneOrMany = _interopRequireDefault(require("./applyToOneOrMany"));
+var _applyToOneOrMany = _interopRequireDefault(require("../../data-transformation/applyToOneOrMany"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20,8 +20,8 @@ function _reduceBundle(data) {
   var reduced = {
     title: data.title,
     polylang: {
-      'current_lang': data.polylang && data.polylang['current_lang'] ? data.polylang['current_lang'] : '',
-      'translations': data.polylang && data.polylang['translations'] ? data.polylang['translations'] : ''
+      current_lang: data.polylang && data.polylang.current_lang ? data.polylang.current_lang : '',
+      translations: data.polylang && data.polylang.translations ? data.polylang.translations : ''
     },
     lang: data.lang,
     slug: data.slug,

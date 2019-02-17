@@ -5,6 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = generateMetaImageInfo;
 
+/**
+ * Generates meta image info
+ *
+ * Like the meta description the OG Image is generated from the page-wide options, but will use a more specific OG image on a page/post – if set.
+ * It uses the predefined size (`social-share-large`), which we defined in our WordPress image crops. 1280px x 720px.
+ * By defining those sizes, an image does not have to be inspected by a platform like facebook, because it does not know the size yet. This saves time.
+ *
+ * @param {Object} siteSettings
+ * @param {Object} post
+ * @return {Array}
+ */
 function generateMetaImageInfo() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$siteSettings = _ref.siteSettings,
@@ -14,7 +25,7 @@ function generateMetaImageInfo() {
 
   // Throw if there is no default og image in the correct size
   if (!siteSettings || !siteSettings.meta_og_image_default || !siteSettings.meta_og_image_default.sizes['social-share-large']) {
-    throw new Error('_siteSettings.meta_og_image_default.sizes[\'social-share-large\'] is required');
+    throw new Error("_siteSettings.meta_og_image_default.sizes['social-share-large'] is required");
   } // Get defaultImageUrl from site settings
 
 

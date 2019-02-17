@@ -3,7 +3,7 @@
  *
  * Inspired by this gist: https://gist.github.com/CatTail/4174511
  *
- * @param  {string} str An encoded string
+ * @param  {string} str - An encoded string
  * @return {String} A decoded string
  */
 

@@ -9,6 +9,15 @@ function loadLocalizedJson(path, lang) {
 /**
  * Generate routes from data
  *
+ * Uses a .json file as base to generate route to this post or page.
+ *
+ * Special behaviour for home slugs:
+ * We use `/` for the default lang home slug, `/en/` for the english home etc.
+ *
+ * ⚠️ For now we cannot have a page with a permalink including home like `/pages/something/home-sweet-home`
+ * In the generateRoutesFromData process we remove all pages which include home.
+ * 🤷‍♂️ Makes sense to be aware of that!
+ *
  * @param {Object} options - The options object to pass in
  * @param {Array} options.langs
  * @param {Object} options.postTypes

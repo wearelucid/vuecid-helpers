@@ -1,7 +1,3 @@
-/**
- * General helpers
- */
-
 // Misc utilities
 import cleanString from './misc/cleanString'
 import decodeHtmlEntity from './misc/decodeHtmlEntity'
