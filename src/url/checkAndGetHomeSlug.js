@@ -1,10 +1,15 @@
-/**
- * Returns homeSlug if we are on home, e.g. '/en/' or '/en' or '/'
- */
-
 import checkIsHome from './checkIsHome'
 
-export default function checkAndGetHomeSlug (path, locale, homeSlug='home') {
+/**
+ * Returns homeSlug if we are on home, e.g. '/en/' or '/en' or '/'
+ *
+ * @param  {string} path
+ * @param  {string} locale
+ * @param  {string} [homeSlug]
+ * @return {string} homeSlug or path
+ */
+
+export default function checkAndGetHomeSlug(path, locale, homeSlug = 'home') {
   if (checkIsHome(path, locale)) {
     return homeSlug
   } else {

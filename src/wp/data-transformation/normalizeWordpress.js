@@ -1,4 +1,4 @@
-import applyToOneOrMany from './applyToOneOrMany'
+import applyToOneOrMany from '../../data-transformation/applyToOneOrMany'
 
 /**
  * Normalize WordPress post object(s).
