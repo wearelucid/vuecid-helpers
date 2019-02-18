@@ -7,7 +7,7 @@ import _has from 'lodash.has'
  * @param {Array} options.baseRoutes
  * @param {string} options.defaultLang
  * @param {Array} options.langs
- * @param {Object} options.routesAliases
+ * @param {Object} options.routeAliases
  * @param {Boolean} [options.isChild]
  * @return {Array} Localized routes to be used in Nuxt config
  */
@@ -17,7 +17,7 @@ export default function generateLocalizedRoutes(
     baseRoutes: [],
     defaultLang: '',
     langs: [],
-    routesAliases: {},
+    routeAliases: {},
     isChild: false
   }
 ) {
@@ -33,7 +33,7 @@ export default function generateLocalizedRoutes(
       const meta = { ...baseRoute.meta, isInBundle: true, postType: null }
 
       // Throw error if no locales provided
-      if (options.routesAliases[name] && !options.routesAliases[name].locales) {
+      if (options.routeAliases[name] && !options.routeAliases[name].locales) {
         throw new Error('Route aliases have to be nested in a locales object')
       }
 
@@ -43,27 +43,27 @@ export default function generateLocalizedRoutes(
           baseRoutes: children,
           langs: [lang],
           defaultLang: options.defaultLang,
-          routesAliases: options.routesAliases,
+          routeAliases: options.routeAliases,
           isChild: true
         })
       }
 
       // Handle route path aliases
       if (
-        options.routesAliases[name] &&
-        _has(options.routesAliases, `${name}.locales.${lang.slug}`)
+        options.routeAliases[name] &&
+        _has(options.routeAliases, `${name}.locales.${lang.slug}`)
       ) {
-        path = options.routesAliases[name].locales[lang.slug]
+        path = options.routeAliases[name].locales[lang.slug]
       }
 
       // Check if in bundle
-      if (_has(options.routesAliases, `${name}.isInBundle`)) {
-        meta.isInBundle = options.routesAliases[name].isInBundle
+      if (_has(options.routeAliases, `${name}.isInBundle`)) {
+        meta.isInBundle = options.routeAliases[name].isInBundle
       }
 
       // Check for post type
-      if (_has(options.routesAliases, `${name}.postType`)) {
-        meta.postType = options.routesAliases[name].postType
+      if (_has(options.routeAliases, `${name}.postType`)) {
+        meta.postType = options.routeAliases[name].postType
       }
 
       // Prefix path with lang slug if not default lang

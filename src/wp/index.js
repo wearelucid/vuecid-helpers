@@ -1,5 +1,5 @@
 // Misc utilities
-import checkIfWordPressPreview from './misc/checkIfWordPressPreview'
+import isWordPressPreview from './misc/isWordPressPreview'
 
 // Data transformations
 import flattenACF from './data-transformation/flattenACF'
@@ -13,7 +13,7 @@ import generateMetaInfo from './meta/generateMetaInfo'
 
 export {
   // Misc utilities
-  checkIfWordPressPreview,
+  isWordPressPreview,
   // Data transformations
   flattenACF,
   normalizeWordpress,

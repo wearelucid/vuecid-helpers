@@ -33,8 +33,8 @@ $ yarn docs
 
 ## Docs
 
-- [Main helpers](#main)
-- [WordPress specific helpers](#wordpress)
+-   [Main helpers](#main)
+-   [WordPress specific helpers](#wordpress)
 
 * * *
 
@@ -132,11 +132,11 @@ Generate localized routes using Nuxt's generated routes and i18n config
 
 ##### Parameters
 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** The options object to pass in (optional, default `{baseRoutes:[],defaultLang:'',langs:[],routesAliases:{},isChild:false}`)
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** The options object to pass in (optional, default `{baseRoutes:[],defaultLang:'',langs:[],routeAliases:{},isChild:false}`)
     -   `options.baseRoutes` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
     -   `options.defaultLang` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
     -   `options.langs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
-    -   `options.routesAliases` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.routeAliases` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.isChild` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Localized routes to be used in Nuxt config
@@ -352,15 +352,15 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ##### Table of Contents
 
--   [checkIfWordPressPreview](#checkifwordpresspreview)
+-   [isWordPressPreview](#iswordpresspreview)
     -   [Parameters](#parameters)
 -   [flattenACF](#flattenacf)
     -   [Parameters](#parameters-1)
--   [normalizeWordpress](#normalizewordpress)
-    -   [Parameters](#parameters-2)
--   [removeFieldsFromPost](#removefieldsfrompost)
-    -   [Parameters](#parameters-3)
 -   [applyToOneOrMany](#applytooneormany)
+    -   [Parameters](#parameters-2)
+-   [normalizeWordpress](#normalizewordpress)
+    -   [Parameters](#parameters-3)
+-   [removeFieldsFromPost](#removefieldsfrompost)
     -   [Parameters](#parameters-4)
 -   [decodeTitle](#decodetitle)
     -   [Parameters](#parameters-5)
@@ -387,13 +387,17 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 -   [generateMetaImageInfo](#generatemetaimageinfo)
     -   [Parameters](#parameters-14)
 
-#### checkIfWordPressPreview
+#### isWordPressPreview
 
-Check if we are in preview mode.
+Check if we are in preview mode by looking for query strings.
+If we have all three it's a pretty fair indicator we are in preview mode.
 
 ##### Parameters
 
--   `route`  
+-   `route` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** The route object
+    -   `route.query` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Route queries to check
+
+Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Do I look like a preview?
 
 #### flattenACF
 
@@ -402,6 +406,17 @@ Flatten acf in WordPress post object(s).
 ##### Parameters
 
 -   `data`  
+
+#### applyToOneOrMany
+
+Apply a function to a single object or to every item in an array.
+
+##### Parameters
+
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Function to pass in to map
+-   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
 
 #### normalizeWordpress
 
@@ -418,17 +433,6 @@ Delete fields we don't need (anymore).
 ##### Parameters
 
 -   `data`  
-
-#### applyToOneOrMany
-
-Apply a function to a single object or to every item in an array.
-
-##### Parameters
-
--   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Function to pass in to map
--   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
-
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
 
 #### decodeTitle
 
