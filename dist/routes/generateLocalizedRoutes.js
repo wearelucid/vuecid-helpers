@@ -20,7 +20,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * @param {Array} options.baseRoutes
  * @param {string} options.defaultLang
  * @param {Array} options.langs
- * @param {Object} options.routesAliases
+ * @param {Object} options.routeAliases
  * @param {Boolean} [options.isChild]
  * @return {Array} Localized routes to be used in Nuxt config
  */
@@ -29,7 +29,7 @@ function generateLocalizedRoutes() {
     baseRoutes: [],
     defaultLang: '',
     langs: [],
-    routesAliases: {},
+    routeAliases: {},
     isChild: false
   };
   var localizedRoutes = []; // Loop through all generated routes
@@ -49,7 +49,7 @@ function generateLocalizedRoutes() {
 
       });
 
-      if (options.routesAliases[name] && !options.routesAliases[name].locales) {
+      if (options.routeAliases[name] && !options.routeAliases[name].locales) {
         throw new Error('Route aliases have to be nested in a locales object');
       } // Recursively generate routes for all children if there are any
 
@@ -59,24 +59,24 @@ function generateLocalizedRoutes() {
           baseRoutes: children,
           langs: [lang],
           defaultLang: options.defaultLang,
-          routesAliases: options.routesAliases,
+          routeAliases: options.routeAliases,
           isChild: true
         });
       } // Handle route path aliases
 
 
-      if (options.routesAliases[name] && (0, _lodash.default)(options.routesAliases, "".concat(name, ".locales.").concat(lang.slug))) {
-        path = options.routesAliases[name].locales[lang.slug];
+      if (options.routeAliases[name] && (0, _lodash.default)(options.routeAliases, "".concat(name, ".locales.").concat(lang.slug))) {
+        path = options.routeAliases[name].locales[lang.slug];
       } // Check if in bundle
 
 
-      if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".isInBundle"))) {
-        meta.isInBundle = options.routesAliases[name].isInBundle;
+      if ((0, _lodash.default)(options.routeAliases, "".concat(name, ".isInBundle"))) {
+        meta.isInBundle = options.routeAliases[name].isInBundle;
       } // Check for post type
 
 
-      if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".postType"))) {
-        meta.postType = options.routesAliases[name].postType;
+      if ((0, _lodash.default)(options.routeAliases, "".concat(name, ".postType"))) {
+        meta.postType = options.routeAliases[name].postType;
       } // Prefix path with lang slug if not default lang
       // But don't do it for children
 

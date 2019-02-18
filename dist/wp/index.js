@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "checkIfWordPressPreview", {
+Object.defineProperty(exports, "isWordPressPreview", {
   enumerable: true,
   get: function get() {
-    return _checkIfWordPressPreview.default;
+    return _isWordPressPreview.default;
   }
 });
 Object.defineProperty(exports, "flattenACF", {
@@ -46,7 +46,7 @@ Object.defineProperty(exports, "generateMetaInfo", {
   }
 });
 
-var _checkIfWordPressPreview = _interopRequireDefault(require("./misc/checkIfWordPressPreview"));
+var _isWordPressPreview = _interopRequireDefault(require("./misc/isWordPressPreview"));
 
 var _flattenACF = _interopRequireDefault(require("./data-transformation/flattenACF"));
 
