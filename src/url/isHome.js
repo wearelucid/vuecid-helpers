@@ -7,6 +7,6 @@
  *
  */
 
-export default function checkIsHome(path, locale) {
+export default function isHome(path, locale) {
   return path === `/${locale}/` || path === `/${locale}` || path === '/'
 }

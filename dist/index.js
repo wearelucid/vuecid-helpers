@@ -39,16 +39,16 @@ Object.defineProperty(exports, "checkAndGetHomeSlug", {
     return _checkAndGetHomeSlug.default;
   }
 });
-Object.defineProperty(exports, "checkIfSlugIsHome", {
+Object.defineProperty(exports, "isHomeSlug", {
   enumerable: true,
   get: function get() {
-    return _checkIfSlugIsHome.default;
+    return _isHomeSlug.default;
   }
 });
-Object.defineProperty(exports, "checkIsHome", {
+Object.defineProperty(exports, "isHome", {
   enumerable: true,
   get: function get() {
-    return _checkIsHome.default;
+    return _isHome.default;
   }
 });
 Object.defineProperty(exports, "cleanSlug", {
@@ -112,9 +112,9 @@ var _generateRoutesFromData = _interopRequireDefault(require("./routes/generateR
 
 var _checkAndGetHomeSlug = _interopRequireDefault(require("./url/checkAndGetHomeSlug"));
 
-var _checkIfSlugIsHome = _interopRequireDefault(require("./url/checkIfSlugIsHome"));
+var _isHomeSlug = _interopRequireDefault(require("./url/isHomeSlug"));
 
-var _checkIsHome = _interopRequireDefault(require("./url/checkIsHome"));
+var _isHome = _interopRequireDefault(require("./url/isHome"));
 
 var _cleanSlug = _interopRequireDefault(require("./url/cleanSlug"));
 

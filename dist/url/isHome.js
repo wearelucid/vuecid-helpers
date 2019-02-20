@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = checkIsHome;
+exports.default = isHome;
 
 /**
  * Returns true if we are on home, e.g. '/en/' or '/en' or '/'
@@ -13,6 +13,6 @@ exports.default = checkIsHome;
  * @return {Boolean}
  *
  */
-function checkIsHome(path, locale) {
+function isHome(path, locale) {
   return path === "/".concat(locale, "/") || path === "/".concat(locale) || path === '/';
 }

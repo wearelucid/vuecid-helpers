@@ -13,12 +13,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Remove 'home' from url.
  *
  * @param  {string} str
+ * @param  {string} [homeSlug]
  * @return {string}
  *
  * @example
  *
- * removeHomeSlug('https://www.mysite.com/home/') -> 'https://www.mysite.com/'
- *
+ * removeHomeSlug('https://www.mysite.com/home/')
+ * // -> 'https://www.mysite.com/'
  */
 function removeHomeSlug(str) {
   var homeSlug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'home';

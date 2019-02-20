@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = checkIfSlugIsHome;
+exports.default = isHomeSlug;
 
 /**
  * Test if slug is homeSlug ('home').
@@ -12,7 +12,7 @@ exports.default = checkIfSlugIsHome;
  * @param  {string} [homeSlug]
  * @return {Boolean}
  */
-function checkIfSlugIsHome(slug) {
+function isHomeSlug(slug) {
   var homeSlug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'home';
   return slug === homeSlug;
 }

@@ -11,8 +11,8 @@ import generateRoutesFromData from './routes/generateRoutesFromData'
 
 // Url utilities
 import checkAndGetHomeSlug from './url/checkAndGetHomeSlug'
-import checkIfSlugIsHome from './url/checkIfSlugIsHome'
-import checkIsHome from './url/checkIsHome'
+import isHomeSlug from './url/isHomeSlug'
+import isHome from './url/isHome'
 import cleanSlug from './url/cleanSlug'
 import getPathFromUrl from './url/getPathFromUrl'
 import removeHomeSlug from './url/removeHomeSlug'
@@ -33,8 +33,8 @@ export {
   generateRoutesFromData,
   // Url utilities
   checkAndGetHomeSlug,
-  checkIfSlugIsHome,
-  checkIsHome,
+  isHomeSlug,
+  isHome,
   cleanSlug,
   getPathFromUrl,
   removeHomeSlug,
