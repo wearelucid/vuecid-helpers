@@ -6,6 +6,6 @@
  * @return {Boolean}
  */
 
-export default function checkIfSlugIsHome(slug, homeSlug = 'home') {
+export default function isHomeSlug(slug, homeSlug = 'home') {
   return slug === homeSlug
 }

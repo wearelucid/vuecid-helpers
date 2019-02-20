@@ -4,12 +4,13 @@ import removeTrailingSlash from './removeTrailingSlash'
  * Remove 'home' from url.
  *
  * @param  {string} str
+ * @param  {string} [homeSlug]
  * @return {string}
  *
  * @example
  *
- * removeHomeSlug('https://www.mysite.com/home/') -> 'https://www.mysite.com/'
- *
+ * removeHomeSlug('https://www.mysite.com/home/')
+ * // -> 'https://www.mysite.com/'
  */
 
 export default function removeHomeSlug(str, homeSlug = 'home') {
