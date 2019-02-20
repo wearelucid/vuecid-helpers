@@ -58,33 +58,34 @@ $ yarn docs
     -   [Examples](#examples-1)
 -   [checkAndGetHomeSlug](#checkandgethomeslug)
     -   [Parameters](#parameters-5)
--   [checkIfSlugIsHome](#checkifslugishome)
+-   [isHomeSlug](#ishomeslug)
     -   [Parameters](#parameters-6)
--   [checkIsHome](#checkishome)
+-   [isHome](#ishome)
     -   [Parameters](#parameters-7)
 -   [cleanSlug](#cleanslug)
     -   [Parameters](#parameters-8)
+    -   [Examples](#examples-2)
 -   [getPathFromUrl](#getpathfromurl)
     -   [Parameters](#parameters-9)
-    -   [Examples](#examples-2)
+    -   [Examples](#examples-3)
 -   [removeHomeSlug](#removehomeslug)
     -   [Parameters](#parameters-10)
-    -   [Examples](#examples-3)
+    -   [Examples](#examples-4)
 -   [removeLeadingLang](#removeleadinglang)
     -   [Parameters](#parameters-11)
-    -   [Examples](#examples-4)
+    -   [Examples](#examples-5)
 -   [removeLeadingSlash](#removeleadingslash)
     -   [Parameters](#parameters-12)
-    -   [Examples](#examples-5)
+    -   [Examples](#examples-6)
 -   [removeTrailingSlash](#removetrailingslash)
     -   [Parameters](#parameters-13)
-    -   [Examples](#examples-6)
+    -   [Examples](#examples-7)
 -   [verifyLeadingSlash](#verifyleadingslash)
     -   [Parameters](#parameters-14)
-    -   [Examples](#examples-7)
+    -   [Examples](#examples-8)
 -   [verifyTrailingSlash](#verifytrailingslash)
     -   [Parameters](#parameters-15)
-    -   [Examples](#examples-8)
+    -   [Examples](#examples-9)
 
 #### cleanString
 
@@ -191,7 +192,7 @@ Returns homeSlug if we are on home, e.g. '/en/' or '/en' or '/'
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** homeSlug or path
 
-#### checkIfSlugIsHome
+#### isHomeSlug
 
 Test if slug is homeSlug ('home').
 
@@ -202,7 +203,7 @@ Test if slug is homeSlug ('home').
 
 Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
-#### checkIsHome
+#### isHome
 
 Returns true if we are on home, e.g. '/en/' or '/en' or '/'
 
@@ -220,6 +221,13 @@ Get the naked slug without any slashes or locales.
 ##### Parameters
 
 -   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+cleanSlug('en/myslug/')
+// -> 'myslug'
+```
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
@@ -251,12 +259,13 @@ Remove 'home' from url.
 ##### Parameters
 
 -   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `homeSlug`   (optional, default `'home'`)
+-   `homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**  (optional, default `'home'`)
 
 ##### Examples
 
 ```javascript
-removeHomeSlug('https://www.mysite.com/home/') -> 'https://www.mysite.com/'
+removeHomeSlug('https://www.mysite.com/home/')
+// -> 'https://www.mysite.com/'
 ```
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
@@ -356,11 +365,11 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
     -   [Parameters](#parameters)
 -   [flattenACF](#flattenacf)
     -   [Parameters](#parameters-1)
--   [applyToOneOrMany](#applytooneormany)
-    -   [Parameters](#parameters-2)
 -   [normalizeWordpress](#normalizewordpress)
-    -   [Parameters](#parameters-3)
+    -   [Parameters](#parameters-2)
 -   [removeFieldsFromPost](#removefieldsfrompost)
+    -   [Parameters](#parameters-3)
+-   [applyToOneOrMany](#applytooneormany)
     -   [Parameters](#parameters-4)
 -   [decodeTitle](#decodetitle)
     -   [Parameters](#parameters-5)
@@ -407,17 +416,6 @@ Flatten acf in WordPress post object(s).
 
 -   `data`  
 
-#### applyToOneOrMany
-
-Apply a function to a single object or to every item in an array.
-
-##### Parameters
-
--   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Function to pass in to map
--   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
-
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
-
 #### normalizeWordpress
 
 Normalize WordPress post object(s).
@@ -433,6 +431,17 @@ Delete fields we don't need (anymore).
 ##### Parameters
 
 -   `data`  
+
+#### applyToOneOrMany
+
+Apply a function to a single object or to every item in an array.
+
+##### Parameters
+
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Function to pass in to map
+-   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
 
 #### decodeTitle
 
@@ -554,12 +563,13 @@ Remove 'home' from url.
 ##### Parameters
 
 -   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `homeSlug`   (optional, default `'home'`)
+-   `homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**  (optional, default `'home'`)
 
 ##### Examples
 
 ```javascript
-removeHomeSlug('https://www.mysite.com/home/') -> 'https://www.mysite.com/'
+removeHomeSlug('https://www.mysite.com/home/')
+// -> 'https://www.mysite.com/'
 ```
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
