@@ -51,6 +51,6 @@ export default function generateRoutesFromData(options = {
 
   return [
     ...langRoutesRoot,
-    ...langRoutes.reduce((acc, cur) => [...acc, ...cur]) // flatten array
+    ...langRoutes.reduce((acc, cur) => [...acc, ...cur], []) // flatten array
   ]
 }
