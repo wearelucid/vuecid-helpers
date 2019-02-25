@@ -153,7 +153,7 @@ We use `/` for the default lang home slug, `/en/` for the english home etc.
 
 ⚠️ For now we cannot have a page with a permalink including home like `/pages/something/home-sweet-home`
 In the generateRoutesFromData process we remove all pages which include home.
-🤷‍♂️ Makes sense to be aware of that!
+🤷‍ Makes sense to be aware of that!
 
 ##### Parameters
 
