@@ -45,7 +45,7 @@ function generateRoutesFromData() {
   }); // Get path from url for each post type from locaized JSON and make an array :-)
 
   var langRoutes = _postTypes.reduce(function (acc, type) {
-    return [].concat(_toConsumableArray(acc.map(function (l) {
+    return _toConsumableArray(acc.map(function (l) {
       var f = l // Kick out all the pages containing the home slug
       // This could also delete a page that contains a string linke '…/home…'
       // maybe a page with the permalink /pages/something/home-sweet-home
@@ -60,7 +60,7 @@ function generateRoutesFromData() {
       return f.map(function (p) {
         return (0, _verifyTrailingSlash.default)(p);
       });
-    })), _toConsumableArray(localizedJson.map(function (l) {
+    })).concat(_toConsumableArray(localizedJson.map(function (l) {
       // Verify trailing slash so we don't get duplicate route generation
       return l[type].map(function (p) {
         return (0, _verifyTrailingSlash.default)((0, _getPathFromUrl.default)(p.link));
@@ -73,7 +73,7 @@ function generateRoutesFromData() {
   var langRoutesRoot = options.langs.map(function (l) {
     return l.default ? '/' : "/".concat(l.slug, "/");
   });
-  return [].concat(_toConsumableArray(langRoutesRoot), _toConsumableArray(langRoutes.reduce(function (acc, cur) {
-    return [].concat(_toConsumableArray(acc), _toConsumableArray(cur));
-  })));
+  return _toConsumableArray(langRoutesRoot).concat(_toConsumableArray(langRoutes.reduce(function (acc, cur) {
+    return _toConsumableArray(acc).concat(_toConsumableArray(cur));
+  }, [])));
 }
