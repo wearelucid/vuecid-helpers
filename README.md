@@ -367,9 +367,9 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
     -   [Parameters](#parameters-1)
 -   [normalizeWordpress](#normalizewordpress)
     -   [Parameters](#parameters-2)
--   [removeFieldsFromPost](#removefieldsfrompost)
-    -   [Parameters](#parameters-3)
 -   [applyToOneOrMany](#applytooneormany)
+    -   [Parameters](#parameters-3)
+-   [removeFieldsFromPost](#removefieldsfrompost)
     -   [Parameters](#parameters-4)
 -   [decodeTitle](#decodetitle)
     -   [Parameters](#parameters-5)
@@ -424,14 +424,6 @@ Normalize WordPress post object(s).
 
 -   `data`  
 
-#### removeFieldsFromPost
-
-Delete fields we don't need (anymore).
-
-##### Parameters
-
--   `data`  
-
 #### applyToOneOrMany
 
 Apply a function to a single object or to every item in an array.
@@ -442,6 +434,14 @@ Apply a function to a single object or to every item in an array.
 -   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
+
+#### removeFieldsFromPost
+
+Delete fields we don't need (anymore).
+
+##### Parameters
+
+-   `data`  
 
 #### decodeTitle
 
