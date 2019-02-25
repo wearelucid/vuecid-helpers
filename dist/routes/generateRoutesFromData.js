@@ -75,5 +75,5 @@ function generateRoutesFromData() {
   });
   return [].concat(_toConsumableArray(langRoutesRoot), _toConsumableArray(langRoutes.reduce(function (acc, cur) {
     return [].concat(_toConsumableArray(acc), _toConsumableArray(cur));
-  })));
+  }, [])));
 }
