@@ -1,6 +1,6 @@
 {
   "name": "@wearelucid/vuecid-helpers",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Vuecid Utility Library",
   "main": "dist/index.js",
   "repository": "https://github.com/wearelucid/vuecid-helpers.git",
@@ -8,7 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.1.0",
-    "axios": "^0.18.0",
     "lodash.deburr": "^4.1.0",
     "lodash.has": "^4.5.2",
     "lodash.kebabcase": "^4.1.1",
@@ -20,6 +19,7 @@
     "@babel/preset-env": "^7.1.0"
   },
   "scripts": {
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "docs": "documentation readme src/index.js --section=Main && documentation readme src/wp/index.js --section=WordPress"
   }
 }

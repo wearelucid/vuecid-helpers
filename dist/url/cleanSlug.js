@@ -15,7 +15,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * Get the naked slug without any slashes or locales.
+ *
+ * @param  {string} str
+ * @return {string}
+ *
+ * @example
+ *
+ * cleanSlug('en/myslug/')
+ * // -> 'myslug'
  */
-function cleanSlug(string) {
-  return (0, _removeLeadingLang.default)((0, _removeLeadingSlash.default)((0, _removeTrailingSlash.default)(string)));
+function cleanSlug(str) {
+  return (0, _removeLeadingLang.default)((0, _removeLeadingSlash.default)((0, _removeTrailingSlash.default)(str)));
 }

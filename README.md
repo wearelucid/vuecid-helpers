@@ -2,194 +2,592 @@
 
 [![npm version](https://img.shields.io/npm/v/@wearelucid/vuecid-helpers.svg?style=flat-square)](https://www.npmjs.com/package/@wearelucid/vuecid-helpers)
 
-A collection of utility functions:
+> A collection of utility functions we use with vuecid-nuxt
 
-## API
-### getData
-Function to get data from WordPress REST API (using axios), [normalize the WordPress](https://github.com/wearelucid/vuecid-helpers/blob/master/src/data-transformation/normalizeWordpress.js) data and [flatten ACF](https://github.com/wearelucid/vuecid-helpers/blob/master/src/data-transformation/flattenACF.js) fields.
+## Setup and build commands
 
-### getPreviewData
-Function like getData, but getting Data directly from unpublished posts or unpublished changes by using WordPress nonce.
+Get started:
 
-## Data transformation
-### applyToOneOrMany
-Apply a function to a single object or to every item in an array.
-
-### decodeTitle
-Transforms any unicode text in title property into html entity using [decodeHtmlEntity](https://github.com/wearelucid/vuecid-helpers/blob/master/src/misc/decodeHtmlEntity.js) function.
-
-### flattenACF
-Remove nesting (flatten) advanced custom fields data structure in WordPress post objects.
-
-E.g.:
-```
-post: {
-  title: 'Standard WordPress post properties like title',
-  acf: {
-    myCustomField: [Content]
-  }
-}
-```
-Becomes
-```
-post: {
-  title: 'Standard WordPress post properties like title',
-  myCustomField: [Content]
-}
+```bash
+$ nvm use
+$ yarn
 ```
 
-### normalizeWordpress
-Normalizes post objects.
-`post.title.rendered` -> `post.title`
-`post.content.rendered` -> `post.content`
-`post.excerpt.rendered` -> `post.excerpt` (if present)
+To generate the dist folder:
 
-### reduceBundle
-Function to reduce posts data including only:
-- title
-- language
-- slug
-- link
-- polylang { current language, translations of post }
-
-### removeFieldsFromPost
-As the title says...
-
-## Meta
-### generateHreflangs
-Generates hreflangs for all translations of a post.
-More about the [hreflang attribute](https://moz.com/learn/seo/hreflang-tag).
-
-### generateMetaDescription
-Generates meta description for `<head>`.
-It uses general meta description (page-wide, from options), which will get overridden if there is a post/page specific meta description set.
-
-### generateMetaImage
-Like the meta description the OG Image is generated from the page-wide options, but will use a more specific OG image on a page/post – if set.
-It uses the predefined size (`social-share-large`), which we defined in our WordPress image crops.  1280px x 720px. By defining those sizes, an image does not have to be inspected by a platform like facebook, because it does not know the size yet. This saves time.
-
-### generateMetaTitle
-Same as meta description but using the title.
-
-### generateMetaInfo
-Uses all the above to generate a `metaInfo` object including all properties nuxt needs to generate a proper `<head>` meta part.
-
-## Misc
-### decodeHtmlEntity
-Decodes unicode characters.
-
-### cleanString
-Cleaning a string by using 
-- [lowdash's deburr](https://lodash.com/docs/4.17.11#deburr) function
-- making everything lowercase ([Lowdash lowercase](https://lodash.com/docs/4.17.11#lowerCase))
-- and converting to kebabcase ([Lowdash kebabCase](https://lodash.com/docs/4.17.11#kebabCase))
-This is good to generate ids.
-
-Example:
-`cleanString('Some string äöü')`
--> 'some-string-aou'
-
-### findPostInArray
-Find a post object in an array of posts by comparing the post's slug.
-
-## Routes
-### generateLocalizedRoutes
-Generate localized routes using Nuxt's generated routes and i18n config.
-
-Child routes are handled separately and don't need localization part. Compare path of root page `'/en/:slug/media'` and child path `':year/:postSlug?'` (without `en`).
-
-Example Outcome:
-```
-{ path: '/en/:slug/media',
-  component:
-   '/path-to-project/pages/_slug/media.vue',
-  name: 'slug-media-en',
-  children: [
-    { path: ':year',
-       component:
-        '/path-to-project/pages/_slug/media/_year/index.vue',
-       name: 'slug-media-year-en' 
-    },
-    { path: ':year/:postSlug?',
-       component:
-        '/path-to-project/pages/_slug/media/_year/_postSlug.vue',
-       name: 'slug-media-year-postSlug-en' 
-    }
-  ]
-}
-```
-
-For further understanding check out [vuecid-nuxt's nuxt-config](https://github.com/wearelucid/vuecid-nuxt/blob/master/nuxt.config.js#L180):
-
-### generateRoutesFromData
-Uses a .json file as base to generate route to this post or page.
-
-Special behaviour for home slugs.
-We use `/` for the default lang home slug, and `/en/` and for the english home etc.
-
-⚠️⚠️⚠️⚠️
-For now we cannot have a page with a permalink including home like `/pages/something/home-sweet-home`
-In the `generateRoutesFromData` process we remove all pages which include `home`. 🤷‍♂️
-Makes sense to be aware of that!
-⚠️⚠️⚠️⚠️
-
-## URL
-### checkAndGetHomeSlug
-Returns homeSlug if we are on home, e.g. `'/en/'` or `'/en'` or `'/'`.
-
-### checkIfSlugIsHome
-Tests if slug is `'home'`.
-
-### checkIsHome
-Returns true if we are on home, e.g. `'/en/'` or `'/en'` or `'/'`.
-
-### checkIfWordPressPreview
-Checks if we are in preview mode by checking for the three special query strings: 
-- preview (Boolean)
-- preview_nonce (String, to allow preview, generated by WordPress)
-- preview_id (Integer, id of post/page) 
-
-### cleanSlug
-Gets the naked slug without any slashes or locales.
-`/en/my-slug/` -> `my-slug`.
-
-### removeHomeSlug
-Removes `'home'` from url.
-`removeHomeSlug('https://www.mysite.com/home/')` -> `'https://www.mysite.com/'`
-
-### getPageOrPostLinkFromLang
-Gets the path of the translation from a page or post object for a specific language.
-
-### getPathFromUrl
-Regex to get the path from url. Makes sure that there is a leading slash.
-`getPathFromUrl('https://www.mysite.com/en/myslug/')` -> `'/en/myslug/'`
-
-⚠️ Subdomains don't work with this:
-https://regex101.com/r/uMOB5V/3/
-`getPathFromUrl('https://www.mysubdomain.mysite.com/en/myslug/')` will not match the regex pattern...
-
-### removeLeadingLang
-Removes lang from url (but only `fr`, `en` or `it`).
-
-### removeLeadingSlash
-`removeLeadingSlash('/myslug/')` -> `'myslug/'`
-
-### removeTrailingSlash
-`removeTrailingSlash('/myslug/')` -> `'/myslug'`
-
-### verifyLeadingSlash
-`verifyLeadingSlash('myslug')` -> `'/myslug'`
-
-### verifyTrailingSlash
-`verifyTrailingSlash('myslug')` -> `'myslug/'`
-
-
-
-
-
-# Build
-To generate the dist folder just run
-
-``` bash
+```bash
 $ yarn build
 ```
+
+To generate the docs:
+
+```bash
+# Install documentation.js globally
+$ yarn global add documentation
+
+# Generate docs
+$ yarn docs
+```
+
+* * *
+
+## Docs
+
+-   [Main helpers](#main)
+-   [WordPress specific helpers](#wordpress)
+
+* * *
+
+### Main
+
+<!-- Generated by documentation.js. Update this documentation by updating the source code. -->
+
+##### Table of Contents
+
+-   [cleanString](#cleanstring)
+    -   [Parameters](#parameters)
+    -   [Examples](#examples)
+-   [decodeHtmlEntity](#decodehtmlentity)
+    -   [Parameters](#parameters-1)
+-   [applyToOneOrMany](#applytooneormany)
+    -   [Parameters](#parameters-2)
+-   [generateLocalizedRoutes](#generatelocalizedroutes)
+    -   [Parameters](#parameters-3)
+-   [generateRoutesFromData](#generateroutesfromdata)
+    -   [Parameters](#parameters-4)
+    -   [Examples](#examples-1)
+-   [checkAndGetHomeSlug](#checkandgethomeslug)
+    -   [Parameters](#parameters-5)
+-   [isHomeSlug](#ishomeslug)
+    -   [Parameters](#parameters-6)
+-   [isHome](#ishome)
+    -   [Parameters](#parameters-7)
+-   [cleanSlug](#cleanslug)
+    -   [Parameters](#parameters-8)
+    -   [Examples](#examples-2)
+-   [getPathFromUrl](#getpathfromurl)
+    -   [Parameters](#parameters-9)
+    -   [Examples](#examples-3)
+-   [removeHomeSlug](#removehomeslug)
+    -   [Parameters](#parameters-10)
+    -   [Examples](#examples-4)
+-   [removeLeadingLang](#removeleadinglang)
+    -   [Parameters](#parameters-11)
+    -   [Examples](#examples-5)
+-   [removeLeadingSlash](#removeleadingslash)
+    -   [Parameters](#parameters-12)
+    -   [Examples](#examples-6)
+-   [removeTrailingSlash](#removetrailingslash)
+    -   [Parameters](#parameters-13)
+    -   [Examples](#examples-7)
+-   [verifyLeadingSlash](#verifyleadingslash)
+    -   [Parameters](#parameters-14)
+    -   [Examples](#examples-8)
+-   [verifyTrailingSlash](#verifytrailingslash)
+    -   [Parameters](#parameters-15)
+    -   [Examples](#examples-9)
+
+#### cleanString
+
+Clean a string: deburr, lowercase and kebabcase it. This is good to generate ids.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A dirty string
+
+##### Examples
+
+```javascript
+cleanString('Some sting äöü')
+// -> 'some-sting-aou'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A clean string
+
+#### decodeHtmlEntity
+
+Decode unicode characters (decode html text into html entity).
+
+Inspired by this gist: <https://gist.github.com/CatTail/4174511>
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** An encoded string
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A decoded string
+
+#### applyToOneOrMany
+
+Apply a function to a single object or to every item in an array.
+
+##### Parameters
+
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Function to pass in to map
+-   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
+
+#### generateLocalizedRoutes
+
+Generate localized routes using Nuxt's generated routes and i18n config
+
+##### Parameters
+
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** The options object to pass in (optional, default `{baseRoutes:[],defaultLang:'',langs:[],routeAliases:{},isChild:false}`)
+    -   `options.baseRoutes` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
+    -   `options.defaultLang` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    -   `options.langs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
+    -   `options.routeAliases` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.isChild` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** 
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Localized routes to be used in Nuxt config
+
+#### generateRoutesFromData
+
+Generate routes from data
+
+Uses a .json file as base to generate route to this post or page.
+
+Special behaviour for home slugs:
+We use `/` for the default lang home slug, `/en/` for the english home etc.
+
+⚠️ For now we cannot have a page with a permalink including home like `/pages/something/home-sweet-home`
+In the generateRoutesFromData process we remove all pages which include home.
+🤷‍ Makes sense to be aware of that!
+
+##### Parameters
+
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** The options object to pass in (optional, default `{langs:[],postTypes:{},dataPath:'',bundle:'',homeSlug:'home',errorPrefix:'error-'}`)
+    -   `options.langs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
+    -   `options.postTypes` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `options.dataPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    -   `options.bundle` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    -   `options.homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+    -   `options.errorPrefix` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** 
+
+##### Examples
+
+```javascript
+generateRoutesFromData({
+  langs: config.env.LANGS,
+  postTypes: config.postTypes,
+  dataPath: '../../../../../static/data',
+  bundle: 'basic',
+  homeSlug: config.env.HOMESLUG,
+  errorPrefix: config.env.ERROR_PREFIX
+})
+```
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** An array of routes to be generated by nuxt generate
+
+#### checkAndGetHomeSlug
+
+Returns homeSlug if we are on home, e.g. '/en/' or '/en' or '/'
+
+##### Parameters
+
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `locale` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**  (optional, default `'home'`)
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** homeSlug or path
+
+#### isHomeSlug
+
+Test if slug is homeSlug ('home').
+
+##### Parameters
+
+-   `slug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**  (optional, default `'home'`)
+
+Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+#### isHome
+
+Returns true if we are on home, e.g. '/en/' or '/en' or '/'
+
+##### Parameters
+
+-   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `locale` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+#### cleanSlug
+
+Get the naked slug without any slashes or locales.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+cleanSlug('en/myslug/')
+// -> 'myslug'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### getPathFromUrl
+
+Regex to get the path from url. Makes sure that there is a leading slash.
+<https://regex101.com/r/uMOB5V/2/>
+
+⚠️ Subdomains don't work with this: <https://regex101.com/r/uMOB5V/3/>
+getPathFromUrl('<https://www.mysubdomain.mysite.com/en/myslug/'>) will not match the regex pattern...
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+getPathFromUrl('https://www.mysite.com/en/myslug/')
+// -> '/en/myslug/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### removeHomeSlug
+
+Remove 'home' from url.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**  (optional, default `'home'`)
+
+##### Examples
+
+```javascript
+removeHomeSlug('https://www.mysite.com/home/')
+// -> 'https://www.mysite.com/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### removeLeadingLang
+
+Remove leading language locale.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+removeLeadingLang('en/myslug/')
+// -> 'myslug/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### removeLeadingSlash
+
+Remove leading slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+removeLeadingSlash('/myslug/')
+// -> 'myslug/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### removeTrailingSlash
+
+Remove trailing slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+removeTrailingSlash('/myslug/')
+// -> '/myslug'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### verifyLeadingSlash
+
+Verify leading slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+verifyLeadingSlash('myslug')
+// -> '/myslug'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### verifyTrailingSlash
+
+Verify leading slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+verifyTrailingSlash('myslug')
+// -> 'myslug/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+### WordPress
+
+<!-- Generated by documentation.js. Update this documentation by updating the source code. -->
+
+##### Table of Contents
+
+-   [isWordPressPreview](#iswordpresspreview)
+    -   [Parameters](#parameters)
+-   [flattenACF](#flattenacf)
+    -   [Parameters](#parameters-1)
+-   [normalizeWordpress](#normalizewordpress)
+    -   [Parameters](#parameters-2)
+-   [applyToOneOrMany](#applytooneormany)
+    -   [Parameters](#parameters-3)
+-   [removeFieldsFromPost](#removefieldsfrompost)
+    -   [Parameters](#parameters-4)
+-   [decodeTitle](#decodetitle)
+    -   [Parameters](#parameters-5)
+-   [decodeHtmlEntity](#decodehtmlentity)
+    -   [Parameters](#parameters-6)
+-   [reduceBundle](#reducebundle)
+    -   [Parameters](#parameters-7)
+-   [generateMetaInfo](#generatemetainfo)
+    -   [Parameters](#parameters-8)
+-   [removeTrailingSlash](#removetrailingslash)
+    -   [Parameters](#parameters-9)
+    -   [Examples](#examples)
+-   [removeLeadingSlash](#removeleadingslash)
+    -   [Parameters](#parameters-10)
+    -   [Examples](#examples-1)
+-   [verifyTrailingSlash](#verifytrailingslash)
+    -   [Parameters](#parameters-11)
+    -   [Examples](#examples-2)
+-   [generateHreflangs](#generatehreflangs)
+    -   [Parameters](#parameters-12)
+-   [removeHomeSlug](#removehomeslug)
+    -   [Parameters](#parameters-13)
+    -   [Examples](#examples-3)
+-   [generateMetaImageInfo](#generatemetaimageinfo)
+    -   [Parameters](#parameters-14)
+
+#### isWordPressPreview
+
+Check if we are in preview mode by looking for query strings.
+If we have all three it's a pretty fair indicator we are in preview mode.
+
+##### Parameters
+
+-   `route` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** The route object
+    -   `route.query` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Route queries to check
+
+Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Do I look like a preview?
+
+#### flattenACF
+
+Flatten acf in WordPress post object(s).
+
+##### Parameters
+
+-   `data`  
+
+#### normalizeWordpress
+
+Normalize WordPress post object(s).
+
+##### Parameters
+
+-   `data`  
+
+#### applyToOneOrMany
+
+Apply a function to a single object or to every item in an array.
+
+##### Parameters
+
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Function to pass in to map
+-   `data` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Your data array with the funtion applied
+
+#### removeFieldsFromPost
+
+Delete fields we don't need (anymore).
+
+##### Parameters
+
+-   `data`  
+
+#### decodeTitle
+
+Data transformation to decode any unicode characters in the title property.
+
+##### Parameters
+
+-   `data`  
+
+#### decodeHtmlEntity
+
+Decode unicode characters (decode html text into html entity).
+
+Inspired by this gist: <https://gist.github.com/CatTail/4174511>
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** An encoded string
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A decoded string
+
+#### reduceBundle
+
+Create reduced WordPress post object(s). This is good to generate routes or sitemaps.
+
+##### Parameters
+
+-   `data`  
+
+#### generateMetaInfo
+
+Generate meta info.
+
+hid in meta tags is needed to prevent duplicate properties
+<https://nuxtjs.org/faq/duplicated-meta-tags/>
+also they have to override nuxt.configs manifest infos, which sets an hid
+therefore the og:description hid has to be called 'hid: "og:description"' and so on
+
+##### Parameters
+
+-   `$0` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+    -   `$0.siteSettings`   (optional, default `{}`)
+    -   `$0.post`   (optional, default `{}`)
+    -   `$0.path`   (optional, default `''`)
+    -   `$0.locale`   (optional, default `''`)
+    -   `$0.debug`   (optional, default `false`)
+    -   `$0.titlePattern`   (optional, default `true`)
+    -   `$0.titlePatternSeparator`   (optional, default `' | '`)
+
+#### removeTrailingSlash
+
+Remove trailing slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+removeTrailingSlash('/myslug/')
+// -> '/myslug'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### removeLeadingSlash
+
+Remove leading slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+removeLeadingSlash('/myslug/')
+// -> 'myslug/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### verifyTrailingSlash
+
+Verify leading slash.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+##### Examples
+
+```javascript
+verifyTrailingSlash('myslug')
+// -> 'myslug/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### generateHreflangs
+
+Generates hreflangs for all translations of a post.
+
+More about the [hreflang attribute](https://moz.com/learn/seo/hreflang-tag).
+
+##### Parameters
+
+-   `post` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `post.polylang` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
+        -   `post.polylang.translations` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)?** 
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
+
+#### removeHomeSlug
+
+Remove 'home' from url.
+
+##### Parameters
+
+-   `str` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `homeSlug` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**  (optional, default `'home'`)
+
+##### Examples
+
+```javascript
+removeHomeSlug('https://www.mysite.com/home/')
+// -> 'https://www.mysite.com/'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+#### generateMetaImageInfo
+
+Generates meta image info
+
+Like the meta description the OG Image is generated from the page-wide options, but will use a more specific OG image on a page/post – if set.
+It uses the predefined size (`social-share-large`), which we defined in our WordPress image crops. 1280px x 720px.
+By defining those sizes, an image does not have to be inspected by a platform like facebook, because it does not know the size yet. This saves time.
+
+##### Parameters
+
+-   `$0` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+    -   `$0.siteSettings`   (optional, default `{}`)
+    -   `$0.post`   (optional, default `{}`)
+-   `siteSettings` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `post` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 

@@ -12,24 +12,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Remove 'home' from url.
  *
+ * @param  {string} str
+ * @param  {string} [homeSlug]
+ * @return {string}
+ *
  * @example
  *
- * removeHomeSlug('https://www.mysite.com/home/') -> 'https://www.mysite.com/'
- *
+ * removeHomeSlug('https://www.mysite.com/home/')
+ * // -> 'https://www.mysite.com/'
  */
-function removeHomeSlug(string) {
+function removeHomeSlug(str) {
   var homeSlug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'home';
 
-  if (typeof string === 'string' || string instanceof String) {
-    var s = string !== '/' ? (0, _removeTrailingSlash.default)(string) : '/';
+  if (typeof str === 'string' || str instanceof String) {
+    var _str = str !== '/' ? (0, _removeTrailingSlash.default)(str) : '/';
 
-    if (s.endsWith(homeSlug)) {
-      s = s.replace(homeSlug, '');
+    if (_str.endsWith(homeSlug)) {
+      _str = _str.replace(homeSlug, '');
     }
 
-    return s;
+    return _str;
   } else {
+    // eslint-disable-next-line no-console
     console.warn('removeHomeSlug(): Please give me a string!');
-    return string;
+    return str;
   }
 }

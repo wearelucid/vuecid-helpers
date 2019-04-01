@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "getData", {
+Object.defineProperty(exports, "cleanString", {
   enumerable: true,
   get: function get() {
-    return _getData.default;
+    return _cleanString.default;
   }
 });
-Object.defineProperty(exports, "getPreviewData", {
+Object.defineProperty(exports, "decodeHtmlEntity", {
   enumerable: true,
   get: function get() {
-    return _getPreviewData.default;
+    return _decodeHtmlEntity.default;
   }
 });
 Object.defineProperty(exports, "applyToOneOrMany", {
@@ -21,46 +21,16 @@ Object.defineProperty(exports, "applyToOneOrMany", {
     return _applyToOneOrMany.default;
   }
 });
-Object.defineProperty(exports, "flattenACF", {
+Object.defineProperty(exports, "generateLocalizedRoutes", {
   enumerable: true,
   get: function get() {
-    return _flattenACF.default;
+    return _generateLocalizedRoutes.default;
   }
 });
-Object.defineProperty(exports, "normalizeWordpress", {
+Object.defineProperty(exports, "generateRoutesFromData", {
   enumerable: true,
   get: function get() {
-    return _normalizeWordpress.default;
-  }
-});
-Object.defineProperty(exports, "removeFieldsFromPost", {
-  enumerable: true,
-  get: function get() {
-    return _removeFieldsFromPost.default;
-  }
-});
-Object.defineProperty(exports, "decodeTitle", {
-  enumerable: true,
-  get: function get() {
-    return _decodeTitle.default;
-  }
-});
-Object.defineProperty(exports, "reduceBundle", {
-  enumerable: true,
-  get: function get() {
-    return _reduceBundle.default;
-  }
-});
-Object.defineProperty(exports, "removeErrorPrefixFromPolylangObjects", {
-  enumerable: true,
-  get: function get() {
-    return _removeErrorPrefixFromPolylangObjects.default;
-  }
-});
-Object.defineProperty(exports, "generateMetaInfo", {
-  enumerable: true,
-  get: function get() {
-    return _generateMetaInfo.default;
+    return _generateRoutesFromData.default;
   }
 });
 Object.defineProperty(exports, "checkAndGetHomeSlug", {
@@ -69,34 +39,22 @@ Object.defineProperty(exports, "checkAndGetHomeSlug", {
     return _checkAndGetHomeSlug.default;
   }
 });
-Object.defineProperty(exports, "checkIfSlugIsHome", {
+Object.defineProperty(exports, "isHomeSlug", {
   enumerable: true,
   get: function get() {
-    return _checkIfSlugIsHome.default;
+    return _isHomeSlug.default;
   }
 });
-Object.defineProperty(exports, "checkIfWordPressPreview", {
+Object.defineProperty(exports, "isHome", {
   enumerable: true,
   get: function get() {
-    return _checkIfWordPressPreview.default;
-  }
-});
-Object.defineProperty(exports, "checkIsHome", {
-  enumerable: true,
-  get: function get() {
-    return _checkIsHome.default;
+    return _isHome.default;
   }
 });
 Object.defineProperty(exports, "cleanSlug", {
   enumerable: true,
   get: function get() {
     return _cleanSlug.default;
-  }
-});
-Object.defineProperty(exports, "getPageOrPostLinkFromLang", {
-  enumerable: true,
-  get: function get() {
-    return _getPageOrPostLinkFromLang.default;
   }
 });
 Object.defineProperty(exports, "getPathFromUrl", {
@@ -141,68 +99,24 @@ Object.defineProperty(exports, "verifyTrailingSlash", {
     return _verifyTrailingSlash.default;
   }
 });
-Object.defineProperty(exports, "cleanString", {
-  enumerable: true,
-  get: function get() {
-    return _cleanString.default;
-  }
-});
-Object.defineProperty(exports, "decodeHtmlEntity", {
-  enumerable: true,
-  get: function get() {
-    return _decodeHtmlEntity.default;
-  }
-});
-Object.defineProperty(exports, "findPostInArray", {
-  enumerable: true,
-  get: function get() {
-    return _findPostInArray.default;
-  }
-});
-Object.defineProperty(exports, "generateLocalizedRoutes", {
-  enumerable: true,
-  get: function get() {
-    return _generateLocalizedRoutes.default;
-  }
-});
-Object.defineProperty(exports, "generateRoutesFromData", {
-  enumerable: true,
-  get: function get() {
-    return _generateRoutesFromData.default;
-  }
-});
 
-var _getData = _interopRequireDefault(require("./api/getData"));
+var _cleanString = _interopRequireDefault(require("./misc/cleanString"));
 
-var _getPreviewData = _interopRequireDefault(require("./api/getPreviewData"));
+var _decodeHtmlEntity = _interopRequireDefault(require("./misc/decodeHtmlEntity"));
 
 var _applyToOneOrMany = _interopRequireDefault(require("./data-transformation/applyToOneOrMany"));
 
-var _flattenACF = _interopRequireDefault(require("./data-transformation/flattenACF"));
+var _generateLocalizedRoutes = _interopRequireDefault(require("./routes/generateLocalizedRoutes"));
 
-var _normalizeWordpress = _interopRequireDefault(require("./data-transformation/normalizeWordpress"));
-
-var _removeFieldsFromPost = _interopRequireDefault(require("./data-transformation/removeFieldsFromPost"));
-
-var _decodeTitle = _interopRequireDefault(require("./data-transformation/decodeTitle"));
-
-var _reduceBundle = _interopRequireDefault(require("./data-transformation/reduceBundle"));
-
-var _removeErrorPrefixFromPolylangObjects = _interopRequireDefault(require("./data-transformation/removeErrorPrefixFromPolylangObjects"));
-
-var _generateMetaInfo = _interopRequireDefault(require("./meta/generateMetaInfo"));
+var _generateRoutesFromData = _interopRequireDefault(require("./routes/generateRoutesFromData"));
 
 var _checkAndGetHomeSlug = _interopRequireDefault(require("./url/checkAndGetHomeSlug"));
 
-var _checkIfSlugIsHome = _interopRequireDefault(require("./url/checkIfSlugIsHome"));
+var _isHomeSlug = _interopRequireDefault(require("./url/isHomeSlug"));
 
-var _checkIfWordPressPreview = _interopRequireDefault(require("./url/checkIfWordPressPreview"));
-
-var _checkIsHome = _interopRequireDefault(require("./url/checkIsHome"));
+var _isHome = _interopRequireDefault(require("./url/isHome"));
 
 var _cleanSlug = _interopRequireDefault(require("./url/cleanSlug"));
-
-var _getPageOrPostLinkFromLang = _interopRequireDefault(require("./url/getPageOrPostLinkFromLang"));
 
 var _getPathFromUrl = _interopRequireDefault(require("./url/getPathFromUrl"));
 
@@ -217,15 +131,5 @@ var _removeTrailingSlash = _interopRequireDefault(require("./url/removeTrailingS
 var _verifyLeadingSlash = _interopRequireDefault(require("./url/verifyLeadingSlash"));
 
 var _verifyTrailingSlash = _interopRequireDefault(require("./url/verifyTrailingSlash"));
-
-var _cleanString = _interopRequireDefault(require("./misc/cleanString"));
-
-var _decodeHtmlEntity = _interopRequireDefault(require("./misc/decodeHtmlEntity"));
-
-var _findPostInArray = _interopRequireDefault(require("./misc/findPostInArray"));
-
-var _generateLocalizedRoutes = _interopRequireDefault(require("./routes/generateLocalizedRoutes"));
-
-var _generateRoutesFromData = _interopRequireDefault(require("./routes/generateRoutesFromData"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

@@ -16,14 +16,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Clean a string: deburr, lowercase and kebabcase it. This is good to generate ids.
  *
+ * @param  {string} str - A dirty string
+ * @return {string} A clean string
+ *
  * @example
  *
  * cleanString('Some sting äöü')
  * // -> 'some-sting-aou'
  */
-function cleanString() {
-  var string = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  // Strip HTML tags
-  string = string.replace(/<\/?[^>]+(>|$)/g, '');
-  return (0, _lodash3.default)((0, _lodash2.default)((0, _lodash.default)(string)));
+function cleanString(str) {
+  if (str && typeof str === 'string') {
+    // Strip HTML tags
+    str.replace(/<\/?[^>]+(>|$)/g, '');
+    return (0, _lodash3.default)((0, _lodash2.default)((0, _lodash.default)(str)));
+  } else {
+    // eslint-disable-next-line no-console
+    console.error('cleanString() – Please give me a string');
+    return str;
+  }
 }

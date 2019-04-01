@@ -1,12 +1,15 @@
 /**
  * Remove leading slash.
  *
+ * @param  {string} str
+ * @return {string}
+ *
  * @example
  *
  * removeLeadingSlash('/myslug/')
  * // -> 'myslug/'
  */
 
-export default function removeLeadingSlash (string) {
-  return string.startsWith('/') ? string.substr(1) : string
+export default function removeLeadingSlash(str) {
+  return str.startsWith('/') ? str.substr(1) : str
 }

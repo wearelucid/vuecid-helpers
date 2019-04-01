@@ -15,53 +15,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * Generate localized routes using Nuxt's generated routes and i18n config
- * @param  {Object} options Options
- * @return {Array}          Localized routes to be used in Nuxt config
+ *
+ * @param  {Object} options - The options object to pass in
+ * @param {Array} options.baseRoutes
+ * @param {string} options.defaultLang
+ * @param {Array} options.langs
+ * @param {Object} options.routeAliases
+ * @param {Boolean} [options.isChild]
+ * @return {Array} Localized routes to be used in Nuxt config
  */
 function generateLocalizedRoutes() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     baseRoutes: [],
     defaultLang: '',
     langs: [],
-    routesAliases: {},
+    routeAliases: {},
     isChild: false
   };
   var localizedRoutes = []; // Loop through all generated routes
 
   options.baseRoutes.forEach(function (baseRoute) {
-    var children = baseRoute.children,
-        path = baseRoute.path; // Loop through all configured languages
-
+    // Loop through all configured languages
     options.langs.forEach(function (lang) {
       // Get values from baseRoute
       var component = baseRoute.component;
       var path = baseRoute.path,
-          name = baseRoute.name,
-          children = baseRoute.children; // Recursively generate routes for all children if there are any
+          children = baseRoute.children;
+      var name = baseRoute.name;
+
+      var meta = _objectSpread({}, baseRoute.meta, {
+        isInBundle: true,
+        postType: null // Throw error if no locales provided
+
+      });
+
+      if (options.routeAliases[name] && !options.routeAliases[name].locales) {
+        throw new Error('Route aliases have to be nested in a locales object');
+      } // Recursively generate routes for all children if there are any
+
 
       if (children) {
         children = generateLocalizedRoutes({
           baseRoutes: children,
           langs: [lang],
           defaultLang: options.defaultLang,
-          routesAliases: options.routesAliases,
+          routeAliases: options.routeAliases,
           isChild: true
         });
-      } // Handle route aliases
+      } // Handle route path aliases
 
 
-      if ((0, _lodash.default)(options.routesAliases, "".concat(name, ".").concat(lang.slug))) {
-        path = options.routesAliases[name][lang.slug];
+      if (options.routeAliases[name] && (0, _lodash.default)(options.routeAliases, "".concat(name, ".locales.").concat(lang.slug))) {
+        path = options.routeAliases[name].locales[lang.slug];
+      } // Check if in bundle
+
+
+      if ((0, _lodash.default)(options.routeAliases, "".concat(name, ".isInBundle"))) {
+        meta.isInBundle = options.routeAliases[name].isInBundle;
+      } // Check for post type
+
+
+      if ((0, _lodash.default)(options.routeAliases, "".concat(name, ".postType"))) {
+        meta.postType = options.routeAliases[name].postType;
       } // Prefix path with lang slug if not default lang
       // But don't do it for children
 
 
       if (lang.lang !== options.defaultLang && !options.isChild) {
-        // Add leading / if needed (ie. children routes)
-        if (path.match(/^\//) === null) {
-          path = "/".concat(path);
-        }
-
+        // Add leading slash if needed (ie. children routes)
+        if (path.match(/^\//) === null) path = "/".concat(path);
         path = "/".concat(lang.slug).concat(path);
       } // Construct route object
 
@@ -73,8 +95,10 @@ function generateLocalizedRoutes() {
         name: "".concat(name, "-").concat(lang.slug)
       } : {}, children ? {
         children: children
-      } : {}); // Push route to array
+      } : {}, {
+        meta: _objectSpread({}, meta) // Push route to array
 
+      });
 
       localizedRoutes.push(route);
     });
