@@ -24,6 +24,7 @@ import verifyTrailingSlash from './url/verifyTrailingSlash'
 
 // WP helpers
 import isWordPressPreview from './wp/misc/isWordPressPreview'
+import generateMetaInfo from './wp/meta/generateMetaInfo'
 
 
 export {
@@ -47,5 +48,6 @@ export {
   removeTrailingSlash,
   verifyLeadingSlash,
   verifyTrailingSlash,
-  isWordPressPreview
+  isWordPressPreview,
+  generateMetaInfo
 }
