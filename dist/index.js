@@ -99,6 +99,12 @@ Object.defineProperty(exports, "verifyTrailingSlash", {
     return _verifyTrailingSlash.default;
   }
 });
+Object.defineProperty(exports, "isWordPressPreview", {
+  enumerable: true,
+  get: function get() {
+    return _isWordPressPreview.default;
+  }
+});
 
 var _cleanString = _interopRequireDefault(require("./misc/cleanString"));
 
@@ -131,5 +137,7 @@ var _removeTrailingSlash = _interopRequireDefault(require("./url/removeTrailingS
 var _verifyLeadingSlash = _interopRequireDefault(require("./url/verifyLeadingSlash"));
 
 var _verifyTrailingSlash = _interopRequireDefault(require("./url/verifyTrailingSlash"));
+
+var _isWordPressPreview = _interopRequireDefault(require("./wp/misc/isWordPressPreview"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

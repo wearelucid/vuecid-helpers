@@ -22,6 +22,10 @@ import removeTrailingSlash from './url/removeTrailingSlash'
 import verifyLeadingSlash from './url/verifyLeadingSlash'
 import verifyTrailingSlash from './url/verifyTrailingSlash'
 
+// WP helpers
+import isWordPressPreview from './wp/misc/isWordPressPreview'
+
+
 export {
   // Misc utilities
   cleanString,
@@ -42,5 +46,6 @@ export {
   removeLeadingSlash,
   removeTrailingSlash,
   verifyLeadingSlash,
-  verifyTrailingSlash
+  verifyTrailingSlash,
+  isWordPressPreview
 }
